@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товары | Admin Panel</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/products.css">
+    <link rel="stylesheet" href="/style/dropdown.css">
+    <link rel="stylesheet" href="/style/notification.css">
+    <script src="/script/notification.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="products.html">
+                            <i class="fas fa-box"></i>
+                            <span>Товары</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Склад</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Товары</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                                        <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                        
+                        <!-- Выпадающее меню уведомлений -->
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Уведомления</h3>
+                                <span class="mark-read">Отметить все как прочитанные</span>
+                            </div>
+                            
+                            <div class="notifications-list">
+                                <!-- Уведомление 1 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon blue">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый заказ #2391</strong> на сумму $2,499</p>
+                                        <span class="time">5 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 2 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon green">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый пользователь</strong> Мария Иванова</p>
+                                        <span class="time">15 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 3 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon orange">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Товар заканчивается</strong> MacBook Pro (осталось 3 шт)</p>
+                                        <span class="time">1 час назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 4 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon purple">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый отзыв</strong> 5 звезд на iPhone 15</p>
+                                        <span class="time">3 часа назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 5 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon red">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Ошибка оплаты</strong> заказ #2385</p>
+                                        <span class="time">вчера</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="notifications.html">Посмотреть все уведомления</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <!-- Выпадающее меню -->
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="profile.html">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="settings.html">
+                                <i class="fas fa-cog"></i> Настройки
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Выйти
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент -->
+            <div class="content">
+                <!-- Заголовок страницы -->
+                <div class="page-header">
+                    <h1>Управление товарами</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Добавить товар
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Импорт
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-upload"></i> Экспорт
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Фильтры -->
+                <div class="filters-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск по названию или артикулу...">
+                    </div>
+                    <select class="filter-select">
+                        <option>Все категории</option>
+                        <option>Электроника</option>
+                        <option>Одежда</option>
+                        <option>Книги</option>
+                        <option>Товары для дома</option>
+                        <option>Косметика</option>
+                        <option>Спорт</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Все статусы</option>
+                        <option>В наличии</option>
+                        <option>Мало</option>
+                        <option>Нет в наличии</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Сортировка</option>
+                        <option>По цене (возр.)</option>
+                        <option>По цене (уб.)</option>
+                        <option>По названию</option>
+                        <option>По рейтингу</option>
+                    </select>
+                </div>
+
+                <!-- Сетка товаров -->
+                <div class="products-grid">
+                    <!-- Товар 1 -->
+                    <div class="product-card">
+                        <img src="https://placehold.co/600x400/4361ee/white?text=iPhone+15" class="product-image">
+                        <div class="product-content">
+                            <h3 class="product-title">iPhone 15 Pro Max</h3>
+                            <div class="product-category">Смартфоны</div>
+                            <div class="product-price-row">
+                                <span class="product-price">$1,299</span>
+                                <span class="product-old-price">$1,399</span>
+                            </div>
+                            <div class="product-stock stock-in">
+                                <i class="fas fa-check-circle"></i> В наличии (45 шт)
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-action-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="product-action-btn"><i class="fas fa-copy"></i></button>
+                                    <button class="product-action-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Товар 2 -->
+                    <div class="product-card">
+                        <img src="https://placehold.co/600x400/00b894/white?text=MacBook" class="product-image">
+                        <div class="product-content">
+                            <h3 class="product-title">MacBook Pro 16"</h3>
+                            <div class="product-category">Ноутбуки</div>
+                            <div class="product-price-row">
+                                <span class="product-price">$2,499</span>
+                            </div>
+                            <div class="product-stock stock-low">
+                                <i class="fas fa-exclamation-triangle"></i> Мало (3 шт)
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.9</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-action-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="product-action-btn"><i class="fas fa-copy"></i></button>
+                                    <button class="product-action-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Товар 3 -->
+                    <div class="product-card">
+                        <img src="https://placehold.co/600x400/f72585/white?text=AirPods" class="product-image">
+                        <div class="product-content">
+                            <h3 class="product-title">AirPods Pro</h3>
+                            <div class="product-category">Аксессуары</div>
+                            <div class="product-price-row">
+                                <span class="product-price">$249</span>
+                            </div>
+                            <div class="product-stock stock-in">
+                                <i class="fas fa-check-circle"></i> В наличии (128 шт)
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.7</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-action-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="product-action-btn"><i class="fas fa-copy"></i></button>
+                                    <button class="product-action-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Товар 4 -->
+                    <div class="product-card">
+                        <img src="https://placehold.co/600x400/f8961e/white?text=Galaxy+S24" class="product-image">
+                        <div class="product-content">
+                            <h3 class="product-title">Samsung Galaxy S24 Ultra</h3>
+                            <div class="product-category">Смартфоны</div>
+                            <div class="product-price-row">
+                                <span class="product-price">$1,199</span>
+                            </div>
+                            <div class="product-stock stock-in">
+                                <i class="fas fa-check-circle"></i> В наличии (23 шт)
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-action-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="product-action-btn"><i class="fas fa-copy"></i></button>
+                                    <button class="product-action-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Пагинация -->
+                <div class="pagination">
+                    <button><i class="fas fa-chevron-left"></i></button>
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button><i class="fas fa-ellipsis-h"></i></button>
+                    <button><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Скрипты -->
+    <script src="/script/products.js"></script>
+</body>
+</html>

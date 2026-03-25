@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Платежи | Admin Panel</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Chart.js для графиков -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="/style/peyments.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class="fas fa-box"></i>
+                            <span>Товары</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Склад</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="chat.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Чат</span>
+                            <span class="badge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendar.html">
+                            <i class="fas fa-calendar"></i>
+                            <span>Календарь</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="files.html">
+                            <i class="fas fa-folder"></i>
+                            <span>Файлы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Отчеты</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="payments.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Платежи</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Платежи и транзакции</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                    <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="#"><i class="fas fa-user"></i> Мой профиль</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Настройки</a>
+                            <hr style="margin: 8px 0; border-color: var(--border);">
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент -->
+            <div class="content">
+                <!-- Заголовок -->
+                <div class="payments-header">
+                    <h1>Платежи и транзакции</h1>
+                    <div class="payments-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Создать счет
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Экспорт
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Вкладки -->
+                <div class="payments-tabs">
+                    <button class="tab-btn active" data-tab="transactions">
+                        <i class="fas fa-list"></i> Транзакции
+                    </button>
+                    <button class="tab-btn" data-tab="invoices">
+                        <i class="fas fa-file-invoice"></i> Инвойсы
+                    </button>
+                    <button class="tab-btn" data-tab="disputes">
+                        <i class="fas fa-exclamation-triangle"></i> Возвраты и споры
+                    </button>
+                </div>
+
+                <!-- Статистика -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Общий доход</h3>
+                            <div class="stat-icon blue">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">$124,592</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +12.5%
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Транзакций</h3>
+                            <div class="stat-icon green">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">1,423</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +5.2%
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Средний чек</h3>
+                            <div class="stat-icon orange">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">$87.50</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +3.1%
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Возвраты</h3>
+                            <div class="stat-icon purple">
+                                <i class="fas fa-undo"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">$2,450</div>
+                        <div class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i> -1.2%
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Фильтры -->
+                <div class="filters-bar">
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Период</label>
+                            <div class="date-range">
+                                <input type="date" class="date-input" id="startDate" value="2026-03-01">
+                                <input type="date" class="date-input" id="endDate" value="2026-03-31">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Статус</label>
+                            <select class="filter-select" id="statusFilter">
+                                <option>Все статусы</option>
+                                <option>Оплачено</option>
+                                <option>Ожидает</option>
+                                <option>Неуспешно</option>
+                                <option>Возврат</option>
+                                <option>Спор</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Платежная система</label>
+                            <select class="filter-select" id="paymentFilter">
+                                <option>Все системы</option>
+                                <option>Visa/Mastercard</option>
+                                <option>PayPal</option>
+                                <option>Apple Pay</option>
+                                <option>Google Pay</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <button class="btn btn-primary" style="width: 100%;">
+                                <i class="fas fa-filter"></i> Применить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Графики -->
+                <div class="charts-grid">
+                    <!-- Доход по дням -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Доход по дням</h3>
+                            <select>
+                                <option>За месяц</option>
+                                <option>За квартал</option>
+                            </select>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="incomeChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Платежные системы -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Платежные системы</h3>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="paymentChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Таблица транзакций -->
+                <div class="payments-table" id="transactionsTab">
+                    <div class="table-header">
+                        <h3 class="table-title">Последние транзакции</h3>
+                        <div class="btn-group">
+                            <button class="btn btn-outline"><i class="fas fa-file-excel"></i> Excel</button>
+                            <button class="btn btn-outline"><i class="fas fa-file-pdf"></i> PDF</button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Транзакция</th>
+                                    <th>Клиент</th>
+                                    <th>Дата</th>
+                                    <th>Сумма</th>
+                                    <th>Статус</th>
+                                    <th>Метод</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon green">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-id">#T-2384</span>
+                                                <span class="transaction-customer">Инвойс #INV-2026-001</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Иван Петров</td>
+                                    <td>15.03.2026</td>
+                                    <td class="amount positive">$1,299.00</td>
+                                    <td><span class="status-badge status-paid">Оплачено</span></td>
+                                    <td>Visa ****4242</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-download"></i></button>
+                                            <button class="action-btn refund"><i class="fas fa-undo"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon orange">
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-id">#T-2391</span>
+                                                <span class="transaction-customer">Инвойс #INV-2026-002</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Мария Иванова</td>
+                                    <td>14.03.2026</td>
+                                    <td class="amount">$2,499.00</td>
+                                    <td><span class="status-badge status-pending">Ожидает</span></td>
+                                    <td>PayPal</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-download"></i></button>
+                                            <button class="action-btn refund"><i class="fas fa-undo"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon purple">
+                                                <i class="fas fa-question"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-id">#T-2395</span>
+                                                <span class="transaction-customer">Инвойс #INV-2026-003</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Алексей Сидоров</td>
+                                    <td>13.03.2026</td>
+                                    <td class="amount">$1,899.00</td>
+                                    <td><span class="status-badge status-disputed">Спор</span></td>
+                                    <td>Mastercard ****1234</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-download"></i></button>
+                                            <button class="action-btn refund"><i class="fas fa-undo"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon green">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-id">#T-2402</span>
+                                                <span class="transaction-customer">Инвойс #INV-2026-004</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Елена Козлова</td>
+                                    <td>12.03.2026</td>
+                                    <td class="amount positive">$1,248.00</td>
+                                    <td><span class="status-badge status-paid">Оплачено</span></td>
+                                    <td>Apple Pay</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-download"></i></button>
+                                            <button class="action-btn refund"><i class="fas fa-undo"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon red">
+                                                <i class="fas fa-times"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-id">#T-2410</span>
+                                                <span class="transaction-customer">Инвойс #INV-2026-005</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Дмитрий Волков</td>
+                                    <td>11.03.2026</td>
+                                    <td class="amount">$689.00</td>
+                                    <td><span class="status-badge status-failed">Неуспешно</span></td>
+                                    <td>Google Pay</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-download"></i></button>
+                                            <button class="action-btn refund"><i class="fas fa-undo"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Пагинация -->
+                    <div class="pagination">
+                        <button><i class="fas fa-chevron-left"></i></button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>4</button>
+                        <button>5</button>
+                        <button><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Инвойсы (скрыты по умолчанию) -->
+                <div class="invoices-grid" id="invoicesTab" style="display: none;">
+                    <!-- Инвойс 1 -->
+                    <div class="invoice-card">
+                        <div class="invoice-header">
+                            <span class="invoice-number">#INV-2026-001</span>
+                            <span class="invoice-date">15.03.2026</span>
+                        </div>
+                        <div class="invoice-customer">
+                            <strong>Иван Петров</strong><br>
+                            <small>ivan@example.com</small>
+                        </div>
+                        <div class="invoice-details">
+                            <div>
+                                <div>Сумма:</div>
+                                <div class="invoice-amount">$1,299.00</div>
+                            </div>
+                            <div>
+                                <div>Статус:</div>
+                                <div class="invoice-status"><span class="status-badge status-paid">Оплачено</span></div>
+                            </div>
+                        </div>
+                        <div class="invoice-footer">
+                            <button class="btn btn-outline"><i class="fas fa-eye"></i> Просмотр</button>
+                            <button class="btn btn-outline"><i class="fas fa-download"></i> PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- Инвойс 2 -->
+                    <div class="invoice-card">
+                        <div class="invoice-header">
+                            <span class="invoice-number">#INV-2026-002</span>
+                            <span class="invoice-date">14.03.2026</span>
+                        </div>
+                        <div class="invoice-customer">
+                            <strong>Мария Иванова</strong><br>
+                            <small>maria@example.com</small>
+                        </div>
+                        <div class="invoice-details">
+                            <div>
+                                <div>Сумма:</div>
+                                <div class="invoice-amount">$2,499.00</div>
+                            </div>
+                            <div>
+                                <div>Статус:</div>
+                                <div class="invoice-status"><span class="status-badge status-pending">Ожидает</span></div>
+                            </div>
+                        </div>
+                        <div class="invoice-footer">
+                            <button class="btn btn-outline"><i class="fas fa-eye"></i> Просмотр</button>
+                            <button class="btn btn-outline"><i class="fas fa-download"></i> PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- Инвойс 3 -->
+                    <div class="invoice-card">
+                        <div class="invoice-header">
+                            <span class="invoice-number">#INV-2026-003</span>
+                            <span class="invoice-date">13.03.2026</span>
+                        </div>
+                        <div class="invoice-customer">
+                            <strong>Алексей Сидоров</strong><br>
+                            <small>alexey@example.com</small>
+                        </div>
+                        <div class="invoice-details">
+                            <div>
+                                <div>Сумма:</div>
+                                <div class="invoice-amount">$1,899.00</div>
+                            </div>
+                            <div>
+                                <div>Статус:</div>
+                                <div class="invoice-status"><span class="status-badge status-disputed">Спор</span></div>
+                            </div>
+                        </div>
+                        <div class="invoice-footer">
+                            <button class="btn btn-outline"><i class="fas fa-eye"></i> Просмотр</button>
+                            <button class="btn btn-outline"><i class="fas fa-download"></i> PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- Инвойс 4 -->
+                    <div class="invoice-card">
+                        <div class="invoice-header">
+                            <span class="invoice-number">#INV-2026-004</span>
+                            <span class="invoice-date">12.03.2026</span>
+                        </div>
+                        <div class="invoice-customer">
+                            <strong>Елена Козлова</strong><br>
+                            <small>elena@example.com</small>
+                        </div>
+                        <div class="invoice-details">
+                            <div>
+                                <div>Сумма:</div>
+                                <div class="invoice-amount">$1,248.00</div>
+                            </div>
+                            <div>
+                                <div>Статус:</div>
+                                <div class="invoice-status"><span class="status-badge status-paid">Оплачено</span></div>
+                            </div>
+                        </div>
+                        <div class="invoice-footer">
+                            <button class="btn btn-outline"><i class="fas fa-eye"></i> Просмотр</button>
+                            <button class="btn btn-outline"><i class="fas fa-download"></i> PDF</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Возвраты и споры (скрыты по умолчанию) -->
+                <div class="disputes-list" id="disputesTab" style="display: none;">
+                    <div class="dispute-item">
+                        <div class="dispute-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="dispute-info">
+                            <div class="dispute-title">Спор по транзакции #T-2395</div>
+                            <div class="dispute-meta">
+                                <span>Клиент: Алексей Сидоров</span>
+                                <span>Сумма: $1,899.00</span>
+                                <span>Дата: 13.03.2026</span>
+                            </div>
+                        </div>
+                        <span class="dispute-status">В обработке</span>
+                    </div>
+
+                    <div class="dispute-item">
+                        <div class="dispute-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <div class="dispute-info">
+                            <div class="dispute-title">Возврат по транзакции #T-2384</div>
+                            <div class="dispute-meta">
+                                <span>Клиент: Иван Петров</span>
+                                <span>Сумма: $1,299.00</span>
+                                <span>Дата: 10.03.2026</span>
+                            </div>
+                        </div>
+                        <span class="dispute-status resolved">Завершен</span>
+                    </div>
+
+                    <div class="dispute-item">
+                        <div class="dispute-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="dispute-info">
+                            <div class="dispute-title">Спор по транзакции #T-2402</div>
+                            <div class="dispute-meta">
+                                <span>Клиент: Елена Козлова</span>
+                                <span>Сумма: $1,248.00</span>
+                                <span>Дата: 12.03.2026</span>
+                            </div>
+                        </div>
+                        <span class="dispute-status">В обработке</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно инвойса -->
+    <div class="modal" id="invoiceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Инвойс #INV-2026-001</h3>
+                <button class="close-btn" id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="invoice-preview">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td><strong>Продавец:</strong></td>
+                            <td>AdminPro LLC</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Покупатель:</strong></td>
+                            <td>Иван Петров</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td>ivan@example.com</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Дата:</strong></td>
+                            <td>15.03.2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Сумма:</strong></td>
+                            <td>$1,299.00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Статус:</strong></td>
+                            <td><span class="status-badge status-paid">Оплачено</span></td>
+                        </tr>
+                    </table>
+                    
+                    <h4 style="margin: 20px 0 10px;">Детали</h4>
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Товар</th>
+                                <th>Кол-во</th>
+                                <th>Цена</th>
+                                <th>Сумма</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>iPhone 15 Pro Max</td>
+                                <td>1</td>
+                                <td>$1,299.00</td>
+                                <td>$1,299.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline"><i class="fas fa-print"></i> Печать</button>
+                <button class="btn btn-outline"><i class="fas fa-download"></i> Скачать</button>
+                <button class="btn btn-primary">Отправить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Скрипты -->
+    <script src="/script/peyments.js" ></script>
+</body>
+</html>

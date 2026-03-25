@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поддержка | Admin Panel</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/support.css">
+    <link rel="stylesheet" href="/style/swich-theme.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class="fas fa-box"></i>
+                            <span>Товары</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Склад</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="chat.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Чат</span>
+                            <span class="badge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendar.html">
+                            <i class="fas fa-calendar"></i>
+                            <span>Календарь</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="files.html">
+                            <i class="fas fa-folder"></i>
+                            <span>Файлы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Отчеты</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="payments.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Платежи</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="support.html">
+                            <i class="fas fa-headset"></i>
+                            <span>Поддержка</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Поддержка</h2>
+                </div>
+                
+                <div class="topbar-right">
+
+                    <!-- Вставьте это перед .notifications в .topbar-right -->
+                    <div class="theme-switch" id="themeSwitch">
+                        <div class="theme-switch-wrapper">
+                            <div class="theme-switch-icon light">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="theme-switch-icon dark">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                    <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="#"><i class="fas fa-user"></i> Мой профиль</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Настройки</a>
+                            <hr style="margin: 8px 0; border-color: var(--border);">
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент -->
+            <div class="content">
+                <!-- Заголовок -->
+                <div class="support-header">
+                    <h1>Центр поддержки</h1>
+                    <div class="support-actions">
+                        <button class="btn btn-primary" id="newTicketBtn">
+                            <i class="fas fa-plus"></i> Создать тикет
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Экспорт
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Статистика -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Открытые</h3>
+                            <div class="stat-icon blue">
+                                <i class="fas fa-ticket-alt"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">24</div>
+                        <div class="stat-label">требуют внимания</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>В работе</h3>
+                            <div class="stat-icon orange">
+                                <i class="fas fa-spinner"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">активных</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Закрыто сегодня</h3>
+                            <div class="stat-icon green">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">за сегодня</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Среднее время</h3>
+                            <div class="stat-icon purple">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">2.5ч</div>
+                        <div class="stat-label">ответа</div>
+                    </div>
+                </div>
+
+                <!-- Вкладки -->
+                <div class="support-tabs">
+                    <button class="tab-btn active" data-tab="all">
+                        <i class="fas fa-list"></i> Все тикеты
+                    </button>
+                    <button class="tab-btn" data-tab="open">
+                        <i class="fas fa-folder-open"></i> Открытые
+                    </button>
+                    <button class="tab-btn" data-tab="progress">
+                        <i class="fas fa-spinner"></i> В работе
+                    </button>
+                    <button class="tab-btn" data-tab="closed">
+                        <i class="fas fa-check-circle"></i> Закрытые
+                    </button>
+                </div>
+
+                <!-- Фильтры -->
+                <div class="filters-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск по тикетам..." id="ticketSearch">
+                    </div>
+                    <select class="filter-select" id="priorityFilter">
+                        <option value="all">Все приоритеты</option>
+                        <option value="high">Высокий</option>
+                        <option value="medium">Средний</option>
+                        <option value="low">Низкий</option>
+                    </select>
+                    <select class="filter-select" id="departmentFilter">
+                        <option value="all">Все отделы</option>
+                        <option value="tech">Техподдержка</option>
+                        <option value="billing">Биллинг</option>
+                        <option value="sales">Продажи</option>
+                    </select>
+                </div>
+
+                <!-- Список тикетов и детали -->
+                <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px;">
+                    <!-- Левая колонка - список тикетов -->
+                    <div class="tickets-list">
+                        <!-- Тикет 1 (высокий приоритет) -->
+                        <div class="ticket-item selected" data-ticket="1">
+                            <div class="ticket-icon urgent">
+                                <i class="fas fa-exclamation"></i>
+                            </div>
+                            <div class="ticket-info">
+                                <div class="ticket-header">
+                                    <span class="ticket-title">Проблема с оплатой</span>
+                                    <span class="ticket-id">#TKT-1245</span>
+                                    <span class="ticket-priority priority-high">Высокий</span>
+                                </div>
+                                <div class="ticket-customer">
+                                    <i class="fas fa-user"></i> Иван Петров
+                                </div>
+                                <div class="ticket-meta">
+                                    <span><i class="fas fa-clock"></i> 15 мин назад</span>
+                                    <span><i class="fas fa-comment"></i> 3 ответа</span>
+                                    <span><i class="fas fa-tag"></i> Биллинг</span>
+                                </div>
+                            </div>
+                            <div class="ticket-right">
+                                <span class="ticket-status status-open">Открыт</span>
+                                <span class="ticket-date">15.03 14:30</span>
+                            </div>
+                        </div>
+
+                        <!-- Тикет 2 -->
+                        <div class="ticket-item" data-ticket="2">
+                            <div class="ticket-icon">
+                                <i class="fas fa-question"></i>
+                            </div>
+                            <div class="ticket-info">
+                                <div class="ticket-header">
+                                    <span class="ticket-title">Вопрос по функционалу</span>
+                                    <span class="ticket-id">#TKT-1244</span>
+                                    <span class="ticket-priority priority-medium">Средний</span>
+                                </div>
+                                <div class="ticket-customer">
+                                    <i class="fas fa-user"></i> Мария Иванова
+                                </div>
+                                <div class="ticket-meta">
+                                    <span><i class="fas fa-clock"></i> 1 час назад</span>
+                                    <span><i class="fas fa-comment"></i> 2 ответа</span>
+                                    <span><i class="fas fa-tag"></i> Техподдержка</span>
+                                </div>
+                            </div>
+                            <div class="ticket-right">
+                                <span class="ticket-status status-progress">В работе</span>
+                                <span class="ticket-date">15.03 13:15</span>
+                            </div>
+                        </div>
+
+                        <!-- Тикет 3 -->
+                        <div class="ticket-item" data-ticket="3">
+                            <div class="ticket-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <div class="ticket-info">
+                                <div class="ticket-header">
+                                    <span class="ticket-title">Ошибка при загрузке</span>
+                                    <span class="ticket-id">#TKT-1243</span>
+                                    <span class="ticket-priority priority-high">Высокий</span>
+                                </div>
+                                <div class="ticket-customer">
+                                    <i class="fas fa-user"></i> Алексей Сидоров
+                                </div>
+                                <div class="ticket-meta">
+                                    <span><i class="fas fa-clock"></i> 3 часа назад</span>
+                                    <span><i class="fas fa-comment"></i> 5 ответов</span>
+                                    <span><i class="fas fa-tag"></i> Техподдержка</span>
+                                </div>
+                            </div>
+                            <div class="ticket-right">
+                                <span class="ticket-status status-answered">Отвечен</span>
+                                <span class="ticket-date">15.03 11:20</span>
+                            </div>
+                        </div>
+
+                        <!-- Тикет 4 -->
+                        <div class="ticket-item" data-ticket="4">
+                            <div class="ticket-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="ticket-info">
+                                <div class="ticket-header">
+                                    <span class="ticket-title">Возврат средств</span>
+                                    <span class="ticket-id">#TKT-1242</span>
+                                    <span class="ticket-priority priority-medium">Средний</span>
+                                </div>
+                                <div class="ticket-customer">
+                                    <i class="fas fa-user"></i> Елена Козлова
+                                </div>
+                                <div class="ticket-meta">
+                                    <span><i class="fas fa-clock"></i> 5 часов назад</span>
+                                    <span><i class="fas fa-comment"></i> 4 ответа</span>
+                                    <span><i class="fas fa-tag"></i> Биллинг</span>
+                                </div>
+                            </div>
+                            <div class="ticket-right">
+                                <span class="ticket-status status-progress">В работе</span>
+                                <span class="ticket-date">15.03 09:45</span>
+                            </div>
+                        </div>
+
+                        <!-- Тикет 5 -->
+                        <div class="ticket-item" data-ticket="5">
+                            <div class="ticket-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="ticket-info">
+                                <div class="ticket-header">
+                                    <span class="ticket-title">Благодарность</span>
+                                    <span class="ticket-id">#TKT-1241</span>
+                                    <span class="ticket-priority priority-low">Низкий</span>
+                                </div>
+                                <div class="ticket-customer">
+                                    <i class="fas fa-user"></i> Дмитрий Волков
+                                </div>
+                                <div class="ticket-meta">
+                                    <span><i class="fas fa-clock"></i> вчера</span>
+                                    <span><i class="fas fa-comment"></i> 1 ответ</span>
+                                    <span><i class="fas fa-tag"></i> Другое</span>
+                                </div>
+                            </div>
+                            <div class="ticket-right">
+                                <span class="ticket-status status-closed">Закрыт</span>
+                                <span class="ticket-date">14.03 16:20</span>
+                            </div>
+                        </div>
+
+                        <!-- Пагинация в списке -->
+                        <div class="pagination" style="justify-content: center; margin-top: 20px;">
+                            <button><i class="fas fa-chevron-left"></i></button>
+                            <button class="active">1</button>
+                            <button>2</button>
+                            <button>3</button>
+                            <button><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Правая колонка - детали тикета -->
+                    <div class="ticket-detail">
+                        <div class="detail-header">
+                            <h2 class="detail-title">Проблема с оплатой</h2>
+                            <div class="detail-actions">
+                                <button class="btn btn-outline"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-outline"><i class="fas fa-tag"></i></button>
+                                <select class="filter-select" style="width: 130px;">
+                                    <option>В работе</option>
+                                    <option>Открыт</option>
+                                    <option>Закрыт</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="detail-info">
+                            <div class="info-item">
+                                <span class="info-label">Тикет</span>
+                                <span class="info-value">#TKT-1245</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Клиент</span>
+                                <span class="info-value">Иван Петров</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Email</span>
+                                <span class="info-value">ivan@example.com</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Отдел</span>
+                                <span class="info-value">Биллинг</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Приоритет</span>
+                                <span class="info-value"><span class="ticket-priority priority-high">Высокий</span></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Создан</span>
+                                <span class="info-value">15.03.2026 14:30</span>
+                            </div>
+                        </div>
+
+                        <!-- Сообщения -->
+                        <div class="messages-container">
+                            <!-- Сообщение от клиента -->
+                            <div class="message customer">
+                                <div class="message-avatar customer">ИП</div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <div class="message-text">
+                                            Здравствуйте! У меня проблема с оплатой. Пытался оплатить заказ, но после ввода данных карты произошла ошибка. Деньги списались, но заказ не оформился.
+                                        </div>
+                                        <div class="message-attachment">
+                                            <i class="fas fa-file-image"></i>
+                                            <div class="attachment-info">
+                                                <div class="attachment-name">screenshot.png</div>
+                                                <div class="attachment-size">245 KB</div>
+                                            </div>
+                                            <i class="fas fa-download"></i>
+                                        </div>
+                                    </div>
+                                    <span class="message-time">14:30</span>
+                                </div>
+                            </div>
+
+                            <!-- Сообщение от поддержки -->
+                            <div class="message support">
+                                <div class="message-avatar">АП</div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <div class="message-text">
+                                            Здравствуйте, Иван! Я проверил информацию. Вижу, что платеж был успешным, но система не обработала заказ из-за технического сбоя. Я уже запустил повторную обработку. Заказ будет оформлен в течение 10 минут.
+                                        </div>
+                                    </div>
+                                    <span class="message-time">14:45</span>
+                                </div>
+                            </div>
+
+                            <!-- Сообщение от клиента -->
+                            <div class="message customer">
+                                <div class="message-avatar customer">ИП</div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <div class="message-text">
+                                            Спасибо! Заказ действительно появился в личном кабинете. А когда вернутся средства? На карте висит списание.
+                                        </div>
+                                    </div>
+                                    <span class="message-time">14:50</span>
+                                </div>
+                            </div>
+
+                            <!-- Сообщение от поддержки -->
+                            <div class="message support">
+                                <div class="message-avatar">АП</div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <div class="message-text">
+                                            Средства будут возвращены в течение 24 часов. Это автоматическая блокировка, которая снимется после подтверждения платежа банком. Вы получите уведомление на email.
+                                        </div>
+                                    </div>
+                                    <span class="message-time">15:05</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ответ на тикет -->
+                        <div class="reply-section">
+                            <h3 class="reply-title">Ответить</h3>
+                            <div class="reply-editor">
+                                <div class="reply-toolbar">
+                                    <button class="toolbar-btn"><i class="fas fa-bold"></i></button>
+                                    <button class="toolbar-btn"><i class="fas fa-italic"></i></button>
+                                    <button class="toolbar-btn"><i class="fas fa-underline"></i></button>
+                                    <button class="toolbar-btn"><i class="fas fa-list"></i></button>
+                                    <button class="toolbar-btn"><i class="fas fa-link"></i></button>
+                                    <button class="toolbar-btn"><i class="fas fa-smile"></i></button>
+                                </div>
+                                <textarea class="reply-textarea" placeholder="Напишите ответ..." rows="5"></textarea>
+                                <div class="reply-attachments">
+                                    <span class="attachment-item">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>инструкция.pdf</span>
+                                        <i class="fas fa-times" style="cursor: pointer;"></i>
+                                    </span>
+                                    <span class="attachment-item">
+                                        <i class="fas fa-file-image"></i>
+                                        <span>скрин.png</span>
+                                        <i class="fas fa-times" style="cursor: pointer;"></i>
+                                    </span>
+                                    <label class="btn btn-outline" style="padding: 4px 12px;">
+                                        <i class="fas fa-paperclip"></i> Добавить
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="reply-actions">
+                                <button class="btn btn-outline">Сохранить черновик</button>
+                                <button class="btn btn-primary">Отправить ответ</button>
+                                <button class="btn btn-success">Отправить и закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Быстрые ответы (для демонстрации) -->
+                <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <span style="font-size: 0.9rem; color: var(--gray);">Шаблоны ответов:</span>
+                    <button class="btn btn-outline" style="padding: 6px 12px;">Благодарим за обращение</button>
+                    <button class="btn btn-outline" style="padding: 6px 12px;">Проблема решена</button>
+                    <button class="btn btn-outline" style="padding: 6px 12px;">Запрос передан в техподдержку</button>
+                    <button class="btn btn-outline" style="padding: 6px 12px;">Инструкция по оплате</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно создания тикета -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Создать новый тикет</h3>
+                <button class="close-btn" id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Клиент</label>
+                    <select class="form-select">
+                        <option>Иван Петров (ivan@example.com)</option>
+                        <option>Мария Иванова (maria@example.com)</option>
+                        <option>Алексей Сидоров (alexey@example.com)</option>
+                        <option>+ Новый клиент</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Тема</label>
+                    <input type="text" class="form-input" placeholder="Краткое описание проблемы">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Отдел</label>
+                    <select class="form-select">
+                        <option>Техническая поддержка</option>
+                        <option>Биллинг и платежи</option>
+                        <option>Отдел продаж</option>
+                        <option>Общие вопросы</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Приоритет</label>
+                    <select class="form-select">
+                        <option>Низкий</option>
+                        <option>Средний</option>
+                        <option>Высокий</option>
+                        <option>Критичный</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Сообщение</label>
+                    <textarea class="form-textarea" placeholder="Опишите проблему подробно..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Вложения</label>
+                    <div style="border: 1px dashed var(--border); padding: 20px; text-align: center; border-radius: 8px;">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--gray);"></i>
+                        <p style="margin-top: 10px;">Перетащите файлы сюда или <a href="#">выберите</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelModal">Отмена</button>
+                <button class="btn btn-primary">Создать тикет</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Скрипты -->
+    <script src="/script/support.js" ></script>
+    <script src="/script/themeswitch.js"></script>
+
+</body>
+</html>

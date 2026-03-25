@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитика | Admin Panel</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Наш CSS (тот же, что и раньше) -->
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="style/analis.css">
+    <link rel="stylesheet" href="/style/dropdown.css">
+    <link rel="stylesheet" href="/style/notification.css">
+    <script src="/script/notification.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар (такой же как на главной) -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Аналитика</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                    <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                        
+                        <!-- Выпадающее меню уведомлений -->
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Уведомления</h3>
+                                <span class="mark-read">Отметить все как прочитанные</span>
+                            </div>
+                            
+                            <div class="notifications-list">
+                                <!-- Уведомление 1 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon blue">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый заказ #2391</strong> на сумму $2,499</p>
+                                        <span class="time">5 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 2 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon green">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый пользователь</strong> Мария Иванова</p>
+                                        <span class="time">15 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 3 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon orange">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Товар заканчивается</strong> MacBook Pro (осталось 3 шт)</p>
+                                        <span class="time">1 час назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 4 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon purple">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый отзыв</strong> 5 звезд на iPhone 15</p>
+                                        <span class="time">3 часа назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 5 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon red">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Ошибка оплаты</strong> заказ #2385</p>
+                                        <span class="time">вчера</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="notifications.html">Посмотреть все уведомления</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <!-- Выпадающее меню -->
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="profile.html">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="settings.html">
+                                <i class="fas fa-cog"></i> Настройки
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Выйти
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент аналитики -->
+            <div class="content">
+                <!-- Заголовок с выбором даты -->
+                <div class="analytics-header">
+                    <h2>Дашборд аналитики</h2>
+                    <div class="date-range">
+                        <button class="active">Сегодня</button>
+                        <button>Неделя</button>
+                        <button>Месяц</button>
+                        <button>Квартал</button>
+                        <button>Год</button>
+                    </div>
+                </div>
+
+                <!-- KPI карточки -->
+                <div class="kpi-grid">
+                    <div class="kpi-card blue">
+                        <div class="kpi-label">Общий доход</div>
+                        <div class="kpi-value">$124,592</div>
+                        <div class="kpi-trend positive">
+                            <i class="fas fa-arrow-up"></i> +12.5% vs прошлый месяц
+                        </div>
+                    </div>
+                    <div class="kpi-card green">
+                        <div class="kpi-label">Заказы</div>
+                        <div class="kpi-value">1,423</div>
+                        <div class="kpi-trend positive">
+                            <i class="fas fa-arrow-up"></i> +5.2% vs прошлый месяц
+                        </div>
+                    </div>
+                    <div class="kpi-card orange">
+                        <div class="kpi-label">Конверсия</div>
+                        <div class="kpi-value">3.24%</div>
+                        <div class="kpi-trend negative">
+                            <i class="fas fa-arrow-down"></i> -0.8% vs прошлый месяц
+                        </div>
+                    </div>
+                    <div class="kpi-card purple">
+                        <div class="kpi-label">Средний чек</div>
+                        <div class="kpi-value">$87.50</div>
+                        <div class="kpi-trend positive">
+                            <i class="fas fa-arrow-up"></i> +3.1% vs прошлый месяц
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Графики -->
+                <div class="charts-grid">
+                    <!-- Линейный график продаж -->
+                    <div class="chart-container full-width">
+                        <div class="chart-header">
+                            <h3>Динамика продаж</h3>
+                            <select>
+                                <option>По дням</option>
+                                <option>По неделям</option>
+                                <option>По месяцам</option>
+                            </select>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Круговая диаграмма -->
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Категории товаров</h3>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="categoriesChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Столбчатая диаграмма -->
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Продажи по дням недели</h3>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="weekdayChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Метрики -->
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-icon blue">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="metric-value">45.2K</div>
+                        <div class="metric-label">Просмотры</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon green">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="metric-value">12.4K</div>
+                        <div class="metric-label">Посетители</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon orange">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="metric-value">1.4K</div>
+                        <div class="metric-label">Покупки</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon purple">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="metric-value">4.8</div>
+                        <div class="metric-label">Рейтинг</div>
+                    </div>
+                </div>
+
+                <!-- Топ товаров -->
+                <div class="top-products">
+                    <div class="card-header">
+                        <h3>Топ товаров по продажам</h3>
+                        <a href="#" class="view-all">Все товары <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-rank">1</div>
+                        <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 8px; margin-right: 12px;">
+                        <div class="product-info">
+                            <div class="product-name">iPhone 15 Pro Max</div>
+                            <div class="product-category">Смартфоны</div>
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-revenue">$129,450</div>
+                            <div class="product-sales">124 продажи</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-rank">2</div>
+                        <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 8px; margin-right: 12px;">
+                        <div class="product-info">
+                            <div class="product-name">MacBook Pro 16"</div>
+                            <div class="product-category">Ноутбуки</div>
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-revenue">$98,200</div>
+                            <div class="product-sales">48 продаж</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-rank">3</div>
+                        <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 8px; margin-right: 12px;">
+                        <div class="product-info">
+                            <div class="product-name">Samsung QLED 65"</div>
+                            <div class="product-category">Телевизоры</div>
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-revenue">$76,500</div>
+                            <div class="product-sales">52 продажи</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-rank">4</div>
+                        <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 8px; margin-right: 12px;">
+                        <div class="product-info">
+                            <div class="product-name">Apple Watch Ultra</div>
+                            <div class="product-category">Часы</div>
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-revenue">$45,320</div>
+                            <div class="product-sales">156 продаж</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-rank">5</div>
+                        <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 8px; margin-right: 12px;">
+                        <div class="product-info">
+                            <div class="product-name">Sony WH-1000XM5</div>
+                            <div class="product-category">Наушники</div>
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-revenue">$32,890</div>
+                            <div class="product-sales">234 продажи</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Скрипты -->
+    <script src="/script/analis.js"></script>
+</body>
+</html>

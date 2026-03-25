@@ -1,0 +1,599 @@
+/* ===== Темная тема ===== */
+.theme-switch {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--light);
+    border-radius: 30px;
+    padding: 4px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+}
+
+.theme-switch-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.theme-switch-icon.light {
+    background: var(--primary);
+    color: white;
+}
+
+.theme-switch-icon.dark {
+    background: transparent;
+    color: var(--gray);
+}
+
+.theme-switch.active .theme-switch-icon.light {
+    background: transparent;
+    color: var(--gray);
+}
+
+.theme-switch.active .theme-switch-icon.dark {
+    background: var(--primary);
+    color: white;
+}
+
+/* Плавный переход для всех элементов */
+* {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Темная тема - переменные */
+body.dark-theme {
+    --primary: #6d8cff;
+    --secondary: #8187e0;
+    --success: #4cd964;
+    --danger: #ff6b9d;
+    --warning: #ffb347;
+    --dark: #ffffff; /* Белый для основного текста */
+    --light: #2d2d3f;
+    --gray: #b0b0c0; /* Светло-серый для второстепенного текста */
+    --border: #3d3d4f;
+    
+    /* Статусы */
+    --status-paid: #4cd964;
+    --status-pending: #ffb347;
+    --status-failed: #ff6b9d;
+    --status-refunded: #b0b0c0;
+    --status-open: #6d8cff;
+    --status-progress: #ffb347;
+    --status-answered: #4cd964;
+    --status-closed: #b0b0c0;
+    
+    /* Фоны статусов */
+    --status-paid-bg: rgba(76, 217, 100, 0.15);
+    --status-pending-bg: rgba(255, 179, 71, 0.15);
+    --status-failed-bg: rgba(255, 107, 157, 0.15);
+    --status-refunded-bg: rgba(176, 176, 192, 0.15);
+    --status-open-bg: rgba(109, 140, 255, 0.15);
+    --status-progress-bg: rgba(255, 179, 71, 0.15);
+    --status-answered-bg: rgba(76, 217, 100, 0.15);
+    --status-closed-bg: rgba(176, 176, 192, 0.15);
+    
+    background: #1a1a2e;
+}
+
+/* Основной текст - белый */
+body.dark-theme,
+body.dark-theme p,
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6,
+body.dark-theme span:not(.status-badge):not(.badge):not(.ticket-priority),
+body.dark-theme div:not(.status-badge):not(.badge):not(.ticket-priority):not(.stat-icon):not(.transaction-icon):not(.message-bubble),
+body.dark-theme .stat-value,
+body.dark-theme .stat-label,
+body.dark-theme .table-title,
+body.dark-theme .card-title,
+body.dark-theme .filter-label,
+body.dark-theme .form-label {
+    color: #ffffff !important;
+}
+
+/* Второстепенный текст - светло-серый */
+body.dark-theme .text-muted,
+body.dark-theme .text-secondary,
+body.dark-theme .small,
+body.dark-theme .time,
+body.dark-theme .date,
+body.dark-theme .meta,
+body.dark-theme .description,
+body.dark-theme .file-size,
+body.dark-theme .file-date,
+body.dark-theme .contact-last-message,
+body.dark-theme .message-time,
+body.dark-theme .task-date,
+body.dark-theme .stat-header h3,
+body.dark-theme .info-label {
+    color: #b0b0c0 !important;
+}
+
+/* Общие элементы */
+body.dark-theme .sidebar,
+body.dark-theme .topbar,
+body.dark-theme .stat-card,
+body.dark-theme .chart-card,
+body.dark-theme .filters-bar,
+body.dark-theme .payments-table,
+body.dark-theme .invoice-card,
+body.dark-theme .ticket-item,
+body.dark-theme .ticket-detail,
+body.dark-theme .messages-container,
+body.dark-theme .reply-editor,
+body.dark-theme .modal-content,
+body.dark-theme .dropdown-menu,
+body.dark-theme .notifications-dropdown,
+body.dark-theme .template-card,
+body.dark-theme .product-card,
+body.dark-theme .users-table,
+body.dark-theme .calendar-main,
+body.dark-theme .calendar-sidebar,
+body.dark-theme .files-sidebar,
+body.dark-theme .files-main,
+body.dark-theme .contacts-sidebar,
+body.dark-theme .chat-area,
+body.dark-theme .data-table,
+body.dark-theme .saved-reports,
+body.dark-theme .disputes-list,
+body.dark-theme .invoices-grid {
+    background: #2d2d3f;
+    border-color: #3d3d4f;
+}
+
+body.dark-theme .topbar {
+    background: #2d2d3f;
+    border-bottom-color: #3d3d4f;
+}
+
+body.dark-theme .sidebar {
+    background: #252537;
+    border-right-color: #3d3d4f;
+}
+
+body.dark-theme .sidebar-nav a {
+    color: #ffffff;
+}
+
+body.dark-theme .sidebar-nav li.active a {
+    background: var(--primary);
+    color: white;
+}
+
+body.dark-theme .search,
+body.dark-theme .search-box,
+body.dark-theme .contacts-search,
+body.dark-theme .filter-select,
+body.dark-theme .form-input,
+body.dark-theme .form-select,
+body.dark-theme .form-textarea,
+body.dark-theme .date-input,
+body.dark-theme .filter-input {
+    background: #1a1a2e;
+    border-color: #3d3d4f;
+    color: #ffffff;
+}
+
+body.dark-theme .filter-select option {
+    background: #2d2d3f;
+    color: #ffffff;
+}
+
+/* Placeholders */
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+    color: #808090;
+}
+
+/* Таблицы */
+body.dark-theme table th {
+    color: #b0b0c0;
+}
+
+body.dark-theme table td {
+    border-bottom-color: #3d3d4f;
+    color: #ffffff;
+}
+
+body.dark-theme tr:hover td {
+    background: #353547;
+}
+
+/* Статусы */
+body.dark-theme .status-paid,
+body.dark-theme .status-badge.status-paid {
+    background: rgba(76, 217, 100, 0.15);
+    color: #4cd964 !important;
+}
+
+body.dark-theme .status-pending,
+body.dark-theme .status-badge.status-pending {
+    background: rgba(255, 179, 71, 0.15);
+    color: #ffb347 !important;
+}
+
+body.dark-theme .status-failed,
+body.dark-theme .status-badge.status-failed {
+    background: rgba(255, 107, 157, 0.15);
+    color: #ff6b9d !important;
+}
+
+body.dark-theme .status-refunded,
+body.dark-theme .status-badge.status-refunded {
+    background: rgba(176, 176, 192, 0.15);
+    color: #b0b0c0 !important;
+}
+
+body.dark-theme .status-open,
+body.dark-theme .status-badge.status-open {
+    background: rgba(109, 140, 255, 0.15);
+    color: #6d8cff !important;
+}
+
+body.dark-theme .status-progress,
+body.dark-theme .status-badge.status-progress {
+    background: rgba(255, 179, 71, 0.15);
+    color: #ffb347 !important;
+}
+
+body.dark-theme .status-answered,
+body.dark-theme .status-badge.status-answered {
+    background: rgba(76, 217, 100, 0.15);
+    color: #4cd964 !important;
+}
+
+body.dark-theme .status-closed,
+body.dark-theme .status-badge.status-closed {
+    background: rgba(176, 176, 192, 0.15);
+    color: #b0b0c0 !important;
+}
+
+body.dark-theme .status-disputed,
+body.dark-theme .status-badge.status-disputed {
+    background: rgba(109, 140, 255, 0.15);
+    color: #6d8cff !important;
+}
+
+/* Приоритеты */
+body.dark-theme .priority-high {
+    background: rgba(255, 107, 157, 0.15);
+    color: #ff6b9d !important;
+}
+
+body.dark-theme .priority-medium {
+    background: rgba(255, 179, 71, 0.15);
+    color: #ffb347 !important;
+}
+
+body.dark-theme .priority-low {
+    background: rgba(176, 176, 192, 0.15);
+    color: #b0b0c0 !important;
+}
+
+/* Иконки статусов */
+body.dark-theme .transaction-icon.green {
+    background: rgba(76, 217, 100, 0.15);
+    color: #4cd964 !important;
+}
+
+body.dark-theme .transaction-icon.orange {
+    background: rgba(255, 179, 71, 0.15);
+    color: #ffb347 !important;
+}
+
+body.dark-theme .transaction-icon.purple {
+    background: rgba(109, 140, 255, 0.15);
+    color: #6d8cff !important;
+}
+
+body.dark-theme .transaction-icon.red {
+    background: rgba(255, 107, 157, 0.15);
+    color: #ff6b9d !important;
+}
+
+body.dark-theme .transaction-icon.blue {
+    background: rgba(109, 140, 255, 0.15);
+    color: #6d8cff !important;
+}
+
+/* Badge */
+body.dark-theme .badge {
+    color: white !important;
+}
+
+/* Сообщения */
+body.dark-theme .message.support .message-bubble {
+    background: #353547;
+    color: #ffffff;
+}
+
+body.dark-theme .message.customer .message-bubble {
+    background: var(--primary);
+    color: white;
+}
+
+body.dark-theme .message.customer .message-bubble .message-text {
+    color: white !important;
+}
+
+body.dark-theme .message-attachment {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .message.customer .message-attachment {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme .message-attachment .attachment-name,
+body.dark-theme .message-attachment .attachment-size {
+    color: #ffffff !important;
+}
+
+/* Кнопки */
+body.dark-theme .btn-outline {
+    border-color: #3d3d4f;
+    color: #ffffff;
+    background: transparent;
+}
+
+body.dark-theme .btn-outline:hover {
+    background: #353547;
+    color: #ffffff;
+}
+
+body.dark-theme .btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+body.dark-theme .btn-success {
+    background: #4cd964;
+    color: white;
+}
+
+body.dark-theme .btn-danger {
+    background: #ff6b9d;
+    color: white;
+}
+
+/* Пагинация */
+body.dark-theme .pagination button {
+    background: #2d2d3f;
+    border-color: #3d3d4f;
+    color: #ffffff;
+}
+
+body.dark-theme .pagination button.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+body.dark-theme .pagination button:hover:not(.active) {
+    background: #353547;
+}
+
+/* Чекбоксы */
+body.dark-theme .task-checkbox,
+body.dark-theme .file-checkbox,
+body.dark-theme .list-checkbox {
+    border-color: #3d3d4f;
+    background: #1a1a2e;
+}
+
+body.dark-theme .file-card.selected .file-checkbox,
+body.dark-theme .list-item.selected .list-checkbox {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* Дропдауны */
+body.dark-theme .dropdown-menu a {
+    color: #ffffff;
+}
+
+body.dark-theme .dropdown-menu a:hover {
+    background: #353547;
+    color: #ffffff;
+}
+
+body.dark-theme .dropdown-divider {
+    background: #3d3d4f;
+}
+
+/* Уведомления */
+body.dark-theme .notification-item {
+    border-bottom-color: #3d3d4f;
+}
+
+body.dark-theme .notification-item:hover {
+    background: #353547;
+}
+
+body.dark-theme .notification-item.unread {
+    background: rgba(109, 140, 255, 0.1);
+}
+
+body.dark-theme .notification-content p {
+    color: #ffffff !important;
+}
+
+body.dark-theme .notification-content .time {
+    color: #b0b0c0 !important;
+}
+
+/* Модальные окна */
+body.dark-theme .modal-content {
+    background: #2d2d3f;
+}
+
+body.dark-theme .modal-header,
+body.dark-theme .modal-footer {
+    border-color: #3d3d4f;
+}
+
+body.dark-theme .modal-header h3 {
+    color: #ffffff !important;
+}
+
+/* Календарь */
+body.dark-theme .month-day {
+    border-color: #3d3d4f;
+}
+
+body.dark-theme .month-day.today {
+    background: rgba(109, 140, 255, 0.1);
+}
+
+body.dark-theme .month-day.other-month {
+    background: #252537;
+}
+
+body.dark-theme .month-day.other-month .day-number {
+    color: #808090;
+}
+
+body.dark-theme .calendar-event {
+    color: #ffffff !important;
+}
+
+/* Файловый менеджер */
+body.dark-theme .folder-item {
+    color: #ffffff;
+}
+
+body.dark-theme .folder-item:hover {
+    background: #353547;
+}
+
+body.dark-theme .folder-item.active {
+    background: rgba(109, 140, 255, 0.15);
+    color: #6d8cff;
+}
+
+body.dark-theme .storage-bar {
+    background: #1a1a2e;
+}
+
+body.dark-theme .file-name {
+    color: #ffffff !important;
+}
+
+body.dark-theme .file-size,
+body.dark-theme .file-date {
+    color: #b0b0c0 !important;
+}
+
+/* Чат */
+body.dark-theme .contact-item {
+    border-bottom-color: #3d3d4f;
+}
+
+body.dark-theme .contact-item:hover {
+    background: #353547;
+}
+
+body.dark-theme .contact-item.active {
+    background: rgba(109, 140, 255, 0.15);
+}
+
+body.dark-theme .contact-name {
+    color: #ffffff !important;
+}
+
+body.dark-theme .contact-last-message,
+body.dark-theme .contact-time {
+    color: #b0b0c0 !important;
+}
+
+body.dark-theme .chat-user-details h4 {
+    color: #ffffff !important;
+}
+
+body.dark-theme .chat-user-details span {
+    color: #b0b0c0 !important;
+}
+
+/* Оверлей */
+body.dark-theme .overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Скроллбар */
+body.dark-theme ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+body.dark-theme ::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+    background: #4d4d6b;
+    border-radius: 4px;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+    background: #6d8cff;
+}
+
+/* Специфические элементы */
+body.dark-theme .stat-value,
+body.dark-theme .stat-label,
+body.dark-theme .kpi-value,
+body.dark-theme .metric-value,
+body.dark-theme .amount {
+    color: #ffffff !important;
+}
+
+body.dark-theme .amount.positive {
+    color: #4cd964 !important;
+}
+
+body.dark-theme .amount.negative {
+    color: #ff6b9d !important;
+}
+
+body.dark-theme .trend.up {
+    color: #4cd964 !important;
+}
+
+body.dark-theme .trend.down {
+    color: #ff6b9d !important;
+}
+
+body.dark-theme .breadcrumb-item {
+    color: #b0b0c0;
+}
+
+body.dark-theme .breadcrumb-item.active {
+    color: #ffffff;
+}
+
+body.dark-theme .task-title {
+    color: #ffffff !important;
+}
+
+body.dark-theme .task-title.checked {
+    color: #b0b0c0 !important;
+}
+
+/* Анимация переключения */
+body {
+    transition: background-color 0.3s ease;
+}

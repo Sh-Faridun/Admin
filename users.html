@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пользователи | Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/users.css">
+    <link rel="stylesheet" href="/style/dropdown.css">
+    <link rel="stylesheet" href="/style/notification.css">
+    <script src="/script/notification.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class="fas fa-box"></i>
+                            <span>Товары</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Склад</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Пользователи</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                                        <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                        
+                        <!-- Выпадающее меню уведомлений -->
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Уведомления</h3>
+                                <span class="mark-read">Отметить все как прочитанные</span>
+                            </div>
+                            
+                            <div class="notifications-list">
+                                <!-- Уведомление 1 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon blue">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый заказ #2391</strong> на сумму $2,499</p>
+                                        <span class="time">5 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 2 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon green">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый пользователь</strong> Мария Иванова</p>
+                                        <span class="time">15 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 3 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon orange">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Товар заканчивается</strong> MacBook Pro (осталось 3 шт)</p>
+                                        <span class="time">1 час назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 4 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon purple">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый отзыв</strong> 5 звезд на iPhone 15</p>
+                                        <span class="time">3 часа назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 5 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon red">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Ошибка оплаты</strong> заказ #2385</p>
+                                        <span class="time">вчера</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="notifications.html">Посмотреть все уведомления</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <!-- Выпадающее меню -->
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="profile.html">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="settings.html">
+                                <i class="fas fa-cog"></i> Настройки
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Выйти
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент -->
+            <div class="content">
+                <!-- Заголовок с действиями -->
+                <div class="users-header">
+                    <h2>Управление пользователями</h2>
+                    <div class="users-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Добавить пользователя
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Экспорт
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-filter"></i> Фильтр
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Фильтры -->
+                <div class="filters-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск по имени, email или телефону...">
+                    </div>
+                    <select class="filter-select">
+                        <option>Все роли</option>
+                        <option>Администраторы</option>
+                        <option>Модераторы</option>
+                        <option>Пользователи</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Все статусы</option>
+                        <option>Активные</option>
+                        <option>Неактивные</option>
+                        <option>Заблокированные</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Сортировка</option>
+                        <option>По дате регистрации</option>
+                        <option>По имени</option>
+                        <option>По активности</option>
+                    </select>
+                </div>
+
+                <!-- Таблица пользователей -->
+                <div class="users-table">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Пользователь</th>
+                                    <th>Роль</th>
+                                    <th>Статус</th>
+                                    <th>Дата регистрации</th>
+                                    <th>Заказы</th>
+                                    <th>Сумма покупок</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <img src="https://ui-avatars.com/api/?name=Ivan+Petrov&background=4361ee&color=fff" class="user-avatar">
+                                            <div class="user-details">
+                                                <span class="user-name">Иван Петров</span>
+                                                <span class="user-email">ivan@example.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge admin">Админ</span></td>
+                                    <td><span class="badge active">Активен</span></td>
+                                    <td>12.05.2024</td>
+                                    <td>24</td>
+                                    <td>$3,245</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-ban"></i></button>
+                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <img src="https://ui-avatars.com/api/?name=Maria+Ivanova&background=00b894&color=fff" class="user-avatar">
+                                            <div class="user-details">
+                                                <span class="user-name">Мария Иванова</span>
+                                                <span class="user-email">maria@example.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge moderator">Модератор</span></td>
+                                    <td><span class="badge active">Активен</span></td>
+                                    <td>03.05.2024</td>
+                                    <td>18</td>
+                                    <td>$2,890</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-ban"></i></button>
+                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <img src="https://ui-avatars.com/api/?name=Alexey+Sidorov&background=f72585&color=fff" class="user-avatar">
+                                            <div class="user-details">
+                                                <span class="user-name">Алексей Сидоров</span>
+                                                <span class="user-email">alexey@example.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge user">Пользователь</span></td>
+                                    <td><span class="badge inactive">Неактивен</span></td>
+                                    <td>28.04.2024</td>
+                                    <td>5</td>
+                                    <td>$549</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-ban"></i></button>
+                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <img src="https://ui-avatars.com/api/?name=Elena+Kozlova&background=f8961e&color=fff" class="user-avatar">
+                                            <div class="user-details">
+                                                <span class="user-name">Елена Козлова</span>
+                                                <span class="user-email">elena@example.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge user">Пользователь</span></td>
+                                    <td><span class="badge active">Активен</span></td>
+                                    <td>15.04.2024</td>
+                                    <td>12</td>
+                                    <td>$1,245</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-ban"></i></button>
+                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <img src="https://ui-avatars.com/api/?name=Dmitry+Volkov&background=845ef7&color=fff" class="user-avatar">
+                                            <div class="user-details">
+                                                <span class="user-name">Дмитрий Волков</span>
+                                                <span class="user-email">dmitry@example.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge admin">Админ</span></td>
+                                    <td><span class="badge active">Активен</span></td>
+                                    <td>02.04.2024</td>
+                                    <td>31</td>
+                                    <td>$4,567</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-ban"></i></button>
+                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Пагинация -->
+                    <div class="pagination">
+                        <button><i class="fas fa-chevron-left"></i></button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>4</button>
+                        <button>5</button>
+                        <button><i class="fas fa-ellipsis-h"></i></button>
+                        <button><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <script src="/script/users.js"></script>
+</body>
+</html>

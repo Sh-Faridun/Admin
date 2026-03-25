@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Файловый менеджер | Admin Panel</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/files.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class="fas fa-box"></i>
+                            <span>Товары</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Склад</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="chat.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Чат</span>
+                            <span class="badge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendar.html">
+                            <i class="fas fa-calendar"></i>
+                            <span>Календарь</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="files.html">
+                            <i class="fas fa-folder"></i>
+                            <span>Файлы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Файловый менеджер</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                    <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="#"><i class="fas fa-user"></i> Мой профиль</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Настройки</a>
+                            <hr style="margin: 8px 0; border-color: var(--border);">
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент -->
+            <div class="content">
+                <!-- Заголовок -->
+                <div class="files-header">
+                    <h1>Мои файлы</h1>
+                    <div class="files-actions">
+                        <button class="btn btn-primary" id="uploadBtn">
+                            <i class="fas fa-cloud-upload-alt"></i> Загрузить
+                        </button>
+                        <button class="btn btn-outline" id="newFolderBtn">
+                            <i class="fas fa-folder-plus"></i> Новая папка
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Статистика -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Папки</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-file-image"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>156</h3>
+                            <p>Изображения</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>43</h3>
+                            <p>Документы</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>2.4 GB</h3>
+                            <p>Использовано</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Навигация -->
+                <div class="files-nav">
+                    <div class="breadcrumb">
+                        <span class="breadcrumb-item">Мои файлы</span>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <span class="breadcrumb-item">Документы</span>
+                        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                        <span class="breadcrumb-item active">Проекты</span>
+                    </div>
+                    <div class="view-options">
+                        <button class="view-btn active" data-view="grid"><i class="fas fa-th-large"></i></button>
+                        <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+
+                <!-- Фильтры -->
+                <div class="filters-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск по файлам..." id="fileSearch">
+                    </div>
+                    <select class="filter-select" id="typeFilter">
+                        <option value="all">Все типы</option>
+                        <option value="folder">Папки</option>
+                        <option value="image">Изображения</option>
+                        <option value="pdf">PDF</option>
+                        <option value="doc">Документы</option>
+                        <option value="archive">Архивы</option>
+                    </select>
+                    <select class="filter-select" id="sortFilter">
+                        <option value="name">По имени</option>
+                        <option value="date">По дате</option>
+                        <option value="size">По размеру</option>
+                        <option value="type">По типу</option>
+                    </select>
+                </div>
+
+                <!-- Область файлов -->
+                <div class="files-container">
+                    <!-- Боковая панель -->
+                    <div class="files-sidebar">
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Папки</h3>
+                            <ul class="folder-list">
+                                <li class="folder-item active">
+                                    <i class="fas fa-folder"></i>
+                                    <span>Все файлы</span>
+                                    <span class="folder-count">245</span>
+                                </li>
+                                <li class="folder-item">
+                                    <i class="fas fa-folder"></i>
+                                    <span>Документы</span>
+                                    <span class="folder-count">43</span>
+                                </li>
+                                <li class="folder-item">
+                                    <i class="fas fa-folder"></i>
+                                    <span>Изображения</span>
+                                    <span class="folder-count">156</span>
+                                </li>
+                                <li class="folder-item">
+                                    <i class="fas fa-folder"></i>
+                                    <span>Проекты</span>
+                                    <span class="folder-count">12</span>
+                                </li>
+                                <li class="folder-item">
+                                    <i class="fas fa-folder"></i>
+                                    <span>Архивы</span>
+                                    <span class="folder-count">8</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Типы файлов</h3>
+                            <div class="file-types">
+                                <div class="type-item">
+                                    <span class="type-color blue"></span>
+                                    <span class="type-name">Изображения</span>
+                                    <span class="folder-count">156</span>
+                                </div>
+                                <div class="type-item">
+                                    <span class="type-color green"></span>
+                                    <span class="type-name">Документы</span>
+                                    <span class="folder-count">43</span>
+                                </div>
+                                <div class="type-item">
+                                    <span class="type-color orange"></span>
+                                    <span class="type-name">PDF</span>
+                                    <span class="folder-count">28</span>
+                                </div>
+                                <div class="type-item">
+                                    <span class="type-color pink"></span>
+                                    <span class="type-name">Архивы</span>
+                                    <span class="folder-count">8</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="storage-info">
+                            <h3 class="sidebar-title">Хранилище</h3>
+                            <div class="storage-bar">
+                                <div class="storage-progress" style="width: 65%;"></div>
+                            </div>
+                            <div class="storage-text">
+                                2.4 GB из 5 GB использовано
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Основная область -->
+                    <div class="files-main">
+                        <!-- Сетка файлов -->
+                        <div class="files-grid" id="filesGrid">
+                            <!-- Папка -->
+                            <div class="file-card" data-type="folder" data-name="Проекты" data-date="2026-03-15" data-size="0">
+                                <div class="file-checkbox"></div>
+                                <div class="file-icon">
+                                    <i class="fas fa-folder"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Проекты</div>
+                                    <div class="file-size">12 файлов</div>
+                                    <div class="file-date">15 мар 2026</div>
+                                </div>
+                            </div>
+
+                            <!-- Папка -->
+                            <div class="file-card" data-type="folder" data-name="Документы" data-date="2026-03-14" data-size="0">
+                                <div class="file-checkbox"></div>
+                                <div class="file-icon">
+                                    <i class="fas fa-folder"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Документы</div>
+                                    <div class="file-size">24 файла</div>
+                                    <div class="file-date">14 мар 2026</div>
+                                </div>
+                            </div>
+
+                            <!-- Изображение -->
+                            <div class="file-card" data-type="image" data-name="photo-1.jpg" data-date="2026-03-15" data-size="2.4">
+                                <div class="file-checkbox"></div>
+                                <div class="file-icon">
+                                    <i class="fas fa-file-image"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">photo-1.jpg</div>
+                                    <div class="file-size">2.4 MB</div>
+                                    <div class="file-date">15 мар 2026</div>
+                                </div>
+                            </div>
+
+                            <!-- PDF -->
+                            <div class="file-card" data-type="pdf" data-name="report-2026.pdf" data-date="2026-03-14" data-size="1.8">
+                                <div class="file-checkbox"></div>
+                                <div class="file-icon">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">report-2026.pdf</div>
+                                    <div class="file-size">1.8 MB</div>
+                                    <div class="file-date">14 мар 2026</div>
+                                </div>
+                            </div>
+
+                            <!-- Word документ -->
+                            <div class="file-card" data-type="doc" data-name="contract.docx" data-date="2026-03-13" data-size="0.5">
+                                <div class="file-checkbox"></div>
+                                <div class="file-icon">
+                                    <i class="fas fa-file-word"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">contract.docx</div>
+                                    <div class="file-size">0.5 MB</div>
+                                    <div class="file-date">13 мар 2026</div>
+                                </div>
+                            </div>
+
+                            <!-- Excel -->
+                            <div class="file-card" data-type="excel" data-name="budget.xlsx" data-date="2026-03-12" data-size="0.8">
+                                <div class="file-checkbox"></div>
+                                <div class="file-icon">
+                                    <i class="fas fa-file-excel"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">budget.xlsx</div>
+                                    <div class="file-size">0.8 MB</div>
+                                    <div class="file-date">12 мар 2026</div>
+                                </div>
+                            </div>
+
+                            <!-- Архив -->
+                            <div class="file-card" data-type="archive" data-name="backup.zip" data-date="2026-03-11" data-size="156">
+                                <div class="file-checkbox"></div>
+                                <div class="file-icon">
+                                    <i class="fas fa-file-archive"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">backup.zip</div>
+                                    <div class="file-size">156 MB</div>
+                                    <div class="file-date">11 мар 2026</div>
+                                </div>
+                            </div>
+
+                            <!-- Изображение -->
+                            <div class="file-card" data-type="image" data-name="screenshot.png" data-date="2026-03-10" data-size="3.2">
+                                <div class="file-checkbox"></div>
+                                <div class="file-icon">
+                                    <i class="fas fa-file-image"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">screenshot.png</div>
+                                    <div class="file-size">3.2 MB</div>
+                                    <div class="file-date">10 мар 2026</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Список файлов (скрыт по умолчанию) -->
+                        <div class="files-list" id="filesList">
+                            <div class="list-header">
+                                <div></div>
+                                <div>Имя</div>
+                                <div>Тип</div>
+                                <div>Размер</div>
+                                <div>Дата</div>
+                                <div>Действия</div>
+                            </div>
+                            
+                            <div class="list-item" data-type="folder" data-name="Проекты">
+                                <div class="list-checkbox"></div>
+                                <div class="list-name"><i class="fas fa-folder"></i> Проекты</div>
+                                <div>Папка</div>
+                                <div>-</div>
+                                <div>15 мар 2026</div>
+                                <div class="list-actions">
+                                    <button class="list-action-btn"><i class="fas fa-download"></i></button>
+                                    <button class="list-action-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div class="list-item" data-type="image" data-name="photo-1.jpg">
+                                <div class="list-checkbox"></div>
+                                <div class="list-name list-image"><i class="fas fa-file-image"></i> photo-1.jpg</div>
+                                <div>Изображение</div>
+                                <div>2.4 MB</div>
+                                <div>15 мар 2026</div>
+                                <div class="list-actions">
+                                    <button class="list-action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="list-action-btn"><i class="fas fa-download"></i></button>
+                                    <button class="list-action-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div class="list-item" data-type="pdf" data-name="report-2026.pdf">
+                                <div class="list-checkbox"></div>
+                                <div class="list-name list-pdf"><i class="fas fa-file-pdf"></i> report-2026.pdf</div>
+                                <div>PDF</div>
+                                <div>1.8 MB</div>
+                                <div>14 мар 2026</div>
+                                <div class="list-actions">
+                                    <button class="list-action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="list-action-btn"><i class="fas fa-download"></i></button>
+                                    <button class="list-action-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Пагинация -->
+                        <div class="pagination">
+                            <button><i class="fas fa-chevron-left"></i></button>
+                            <button class="active">1</button>
+                            <button>2</button>
+                            <button>3</button>
+                            <button>4</button>
+                            <button>5</button>
+                            <button><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно предпросмотра -->
+    <div class="preview-modal" id="previewModal">
+        <div class="preview-content">
+            <div class="preview-header">
+                <h3 id="previewTitle">photo-1.jpg</h3>
+                <button class="close-btn" id="closePreview"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="preview-body">
+                <img src="https://placehold.co/800x600/4361ee/white?text=Image+Preview" alt="Preview" id="previewImage">
+                <div class="preview-info" id="previewInfo">
+                    <p><strong>Тип:</strong> Изображение</p>
+                    <p><strong>Размер:</strong> 2.4 MB</p>
+                    <p><strong>Дата:</strong> 15 марта 2026</p>
+                    <p><strong>Разрешение:</strong> 1920x1080</p>
+                </div>
+            </div>
+            <div class="preview-footer">
+                <button class="btn btn-outline"><i class="fas fa-download"></i> Скачать</button>
+                <button class="btn btn-primary"><i class="fas fa-share"></i> Поделиться</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно загрузки -->
+    <div class="preview-modal" id="uploadModal">
+        <div class="preview-content">
+            <div class="preview-header">
+                <h3>Загрузка файлов</h3>
+                <button class="close-btn" id="closeUpload"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="preview-body">
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Перетащите файлы сюда</h3>
+                    <p>или кликните для выбора</p>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h4>Загруженные файлы</h4>
+                    <div style="margin-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; padding: 10px; background: var(--light); border-radius: 8px; margin-bottom: 5px;">
+                            <span><i class="fas fa-file-image"></i> photo-1.jpg</span>
+                            <span>2.4 MB</span>
+                            <span><i class="fas fa-check-circle" style="color: #00b894;"></i> Загружено</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 10px; background: var(--light); border-radius: 8px;">
+                            <span><i class="fas fa-file-pdf"></i> document.pdf</span>
+                            <span>1.2 MB</span>
+                            <span><i class="fas fa-spinner fa-spin"></i> Загрузка...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-footer">
+                <button class="btn btn-outline" id="cancelUpload">Отмена</button>
+                <button class="btn btn-primary">Загрузить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Контекстное меню -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-menu-item"><i class="fas fa-eye"></i> Просмотр</div>
+        <div class="context-menu-item"><i class="fas fa-download"></i> Скачать</div>
+        <div class="context-menu-item"><i class="fas fa-share"></i> Поделиться</div>
+        <div class="context-menu-item"><i class="fas fa-copy"></i> Копировать</div>
+        <div class="context-menu-item"><i class="fas fa-cut"></i> Вырезать</div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item rename"><i class="fas fa-edit"></i> Переименовать</div>
+        <div class="context-menu-item delete"><i class="fas fa-trash"></i> Удалить</div>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Скрипты -->
+    <script src="/script/files.js"></script>
+</body>
+</html>

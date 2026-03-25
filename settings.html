@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки | Admin Panel</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/settings.css">
+    <link rel="stylesheet" href="/style/dropdown.css">
+    <link rel="stylesheet" href="/style/notification.css">
+    <script src="/script/notification.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class="fas fa-box"></i>
+                            <span>Товары</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Склад</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Настройки</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                                        <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                        
+                        <!-- Выпадающее меню уведомлений -->
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Уведомления</h3>
+                                <span class="mark-read">Отметить все как прочитанные</span>
+                            </div>
+                            
+                            <div class="notifications-list">
+                                <!-- Уведомление 1 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon blue">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый заказ #2391</strong> на сумму $2,499</p>
+                                        <span class="time">5 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 2 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon green">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый пользователь</strong> Мария Иванова</p>
+                                        <span class="time">15 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 3 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon orange">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Товар заканчивается</strong> MacBook Pro (осталось 3 шт)</p>
+                                        <span class="time">1 час назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 4 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon purple">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый отзыв</strong> 5 звезд на iPhone 15</p>
+                                        <span class="time">3 часа назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 5 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon red">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Ошибка оплаты</strong> заказ #2385</p>
+                                        <span class="time">вчера</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="notifications.html">Посмотреть все уведомления</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <!-- Выпадающее меню -->
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="profile.html">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="settings.html">
+                                <i class="fas fa-cog"></i> Настройки
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Выйти
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент -->
+            <div class="content">
+                <!-- Заголовок страницы -->
+                <div class="page-header">
+                    <h1>Настройки системы</h1>
+                </div>
+
+                <!-- Вкладки -->
+                <div class="settings-tabs">
+                    <button class="tab-btn active">
+                        <i class="fas fa-user"></i> Профиль
+                    </button>
+                    <button class="tab-btn">
+                        <i class="fas fa-lock"></i> Безопасность
+                    </button>
+                    <button class="tab-btn">
+                        <i class="fas fa-bell"></i> Уведомления
+                    </button>
+                    <button class="tab-btn">
+                        <i class="fas fa-palette"></i> Оформление
+                    </button>
+                    <button class="tab-btn">
+                        <i class="fas fa-globe"></i> Язык и регион
+                    </button>
+                    <button class="tab-btn">
+                        <i class="fas fa-database"></i> Резервное копирование
+                    </button>
+                </div>
+
+                <!-- Профиль -->
+                <div class="settings-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-user-circle"></i> Информация о профиле
+                    </h3>
+                    
+                    <div class="avatar-upload">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff&size=100" alt="Avatar" class="current-avatar">
+                        <div class="avatar-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-upload"></i> Загрузить фото
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-trash"></i> Удалить
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Имя</label>
+                            <input type="text" class="form-input" value="Алексей">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Фамилия</label>
+                            <input type="text" class="form-input" value="Петров">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" value="admin@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Телефон</label>
+                            <input type="tel" class="form-input" value="+7 (999) 123-45-67">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">Должность</label>
+                            <input type="text" class="form-input" value="Главный администратор">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">О себе</label>
+                            <textarea class="form-textarea">Администратор системы с опытом работы более 5 лет. Отвечаю за управление пользователями и настройку системы.</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-outline">Отмена</button>
+                        <button class="btn btn-primary">Сохранить изменения</button>
+                    </div>
+                </div>
+
+                <!-- Безопасность -->
+                <div class="settings-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-shield-alt"></i> Безопасность
+                    </h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Текущий пароль</label>
+                            <input type="password" class="form-input" placeholder="********">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Новый пароль</label>
+                            <input type="password" class="form-input" placeholder="Введите новый пароль">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">Подтверждение пароля</label>
+                            <input type="password" class="form-input" placeholder="Подтвердите новый пароль">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-primary">Изменить пароль</button>
+                    </div>
+                </div>
+
+                <!-- Двухфакторная аутентификация -->
+                <div class="settings-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-mobile-alt"></i> Двухфакторная аутентификация
+                    </h3>
+                    
+                    <div class="toggle-switch">
+                        <div class="toggle-info">
+                            <h4>Включить 2FA</h4>
+                            <p>Дополнительная защита вашего аккаунта</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="toggle-switch">
+                        <div class="toggle-info">
+                            <h4>SMS уведомления</h4>
+                            <p>Получать коды подтверждения по SMS</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="toggle-switch">
+                        <div class="toggle-info">
+                            <h4>Уведомления о входе</h4>
+                            <p>Получать уведомления о новом входе в аккаунт</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Уведомления -->
+                <div class="settings-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-bell"></i> Настройки уведомлений
+                    </h3>
+                    
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Новые заказы</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Регистрация новых пользователей</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Окончание товара на складе</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>Системные обновления</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>Отчеты по продажам</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Оформление -->
+                <div class="settings-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-palette"></i> Оформление
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Цветовая схема</label>
+                        <select class="form-select">
+                            <option>Светлая</option>
+                            <option>Темная</option>
+                            <option selected>Системная</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Язык интерфейса</label>
+                        <select class="form-select">
+                            <option selected>Русский</option>
+                            <option>English</option>
+                            <option>Қазақша</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Часовой пояс</label>
+                        <select class="form-select">
+                            <option selected>(GMT+03:00) Москва</option>
+                            <option>(GMT+06:00) Астана</option>
+                            <option>(GMT+00:00) Лондон</option>
+                            <option>(GMT-05:00) Нью-Йорк</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Резервное копирование -->
+                <div class="settings-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-database"></i> Резервное копирование
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Периодичность</label>
+                        <select class="form-select">
+                            <option>Ежедневно</option>
+                            <option selected>Еженедельно</option>
+                            <option>Ежемесячно</option>
+                            <option>Вручную</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Время создания копии</label>
+                        <input type="time" class="form-input" value="03:00">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Хранить копии</label>
+                        <select class="form-select">
+                            <option>7 дней</option>
+                            <option selected>30 дней</option>
+                            <option>90 дней</option>
+                            <option>Всегда</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Скачать последнюю копию
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> Сохранить настройки
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Опасная зона -->
+                <div class="settings-card" style="border: 1px solid var(--danger);">
+                    <h3 class="card-title" style="color: var(--danger);">
+                        <i class="fas fa-exclamation-triangle"></i> Опасная зона
+                    </h3>
+                    
+                    <p style="margin-bottom: 20px; color: var(--gray);">Эти действия необратимы. Пожалуйста, будьте внимательны.</p>
+                    
+                    <div class="form-actions" style="justify-content: flex-start;">
+                        <button class="btn btn-outline" style="border-color: var(--danger); color: var(--danger);">
+                            <i class="fas fa-sign-out-alt"></i> Деактивировать аккаунт
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Удалить аккаунт
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Скрипты -->
+    <script src="/script/settings.js"></script>
+</body>
+</html>

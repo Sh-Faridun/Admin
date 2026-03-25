@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат | Admin Panel</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/chat.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class="fas fa-box"></i>
+                            <span>Товары</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Склад</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="chat.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Чат</span>
+                            <span class="badge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Чат</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                    <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="#"><i class="fas fa-user"></i> Мой профиль</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Настройки</a>
+                            <hr style="margin: 8px 0; border-color: var(--border);">
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент чата -->
+            <div class="content" style="padding: 20px;">
+                <div class="chat-container">
+                    <!-- Список контактов -->
+                    <div class="contacts-sidebar">
+                        <div class="contacts-header">
+                            <h3>Сообщения</h3>
+                            <div class="contacts-search">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Поиск в чатах...">
+                            </div>
+                        </div>
+                        
+                        <div class="contacts-list">
+                            <!-- Контакт 1 (онлайн) -->
+                            <div class="contact-item active" data-user="1">
+                                <div class="contact-avatar">
+                                    <img src="https://ui-avatars.com/api/?name=Ivan+Petrov&background=4361ee&color=fff">
+                                    <span class="online-status online"></span>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-name">Иван Петров</div>
+                                    <div class="contact-last-message">Привет! Как дела?</div>
+                                </div>
+                                <span class="contact-time">5 мин</span>
+                                <span class="unread-badge">2</span>
+                            </div>
+                            
+                            <!-- Контакт 2 (онлайн) -->
+                            <div class="contact-item" data-user="2">
+                                <div class="contact-avatar">
+                                    <img src="https://ui-avatars.com/api/?name=Maria+Ivanova&background=00b894&color=fff">
+                                    <span class="online-status online"></span>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-name">Мария Иванова</div>
+                                    <div class="contact-last-message">Отправила отчет</div>
+                                </div>
+                                <span class="contact-time">15 мин</span>
+                            </div>
+                            
+                            <!-- Контакт 3 (офлайн) -->
+                            <div class="contact-item" data-user="3">
+                                <div class="contact-avatar">
+                                    <img src="https://ui-avatars.com/api/?name=Alexey+Sidorov&background=f72585&color=fff">
+                                    <span class="online-status offline"></span>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-name">Алексей Сидоров</div>
+                                    <div class="contact-last-message">Когда будет готово?</div>
+                                </div>
+                                <span class="contact-time">1 час</span>
+                            </div>
+                            
+                            <!-- Контакт 4 (онлайн) -->
+                            <div class="contact-item" data-user="4">
+                                <div class="contact-avatar">
+                                    <img src="https://ui-avatars.com/api/?name=Elena+Kozlova&background=f8961e&color=fff">
+                                    <span class="online-status online"></span>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-name">Елена Козлова</div>
+                                    <div class="contact-last-message">Спасибо за помощь!</div>
+                                </div>
+                                <span class="contact-time">3 часа</span>
+                            </div>
+                            
+                            <!-- Контакт 5 (офлайн) -->
+                            <div class="contact-item" data-user="5">
+                                <div class="contact-avatar">
+                                    <img src="https://ui-avatars.com/api/?name=Dmitry+Volkov&background=845ef7&color=fff">
+                                    <span class="online-status offline"></span>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-name">Дмитрий Волков</div>
+                                    <div class="contact-last-message">Завтра встретимся?</div>
+                                </div>
+                                <span class="contact-time">вчера</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Область чата -->
+                    <div class="chat-area">
+                        <!-- Заголовок чата -->
+                        <div class="chat-header">
+                            <div class="chat-user-info">
+                                <img src="https://ui-avatars.com/api/?name=Ivan+Petrov&background=4361ee&color=fff">
+                                <div class="chat-user-details">
+                                    <h4>Иван Петров</h4>
+                                    <span><i class="fas fa-circle" style="color: #00b894; font-size: 0.5rem;"></i> онлайн</span>
+                                </div>
+                            </div>
+                            <div class="chat-actions">
+                                <i class="fas fa-phone"></i>
+                                <i class="fas fa-video"></i>
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                        </div>
+
+                        <!-- Сообщения -->
+                        <div class="messages-container" id="messagesContainer">
+                            <!-- Входящее сообщение -->
+                            <div class="message incoming">
+                                <div class="message-avatar">
+                                    <img src="https://ui-avatars.com/api/?name=Ivan+Petrov&background=4361ee&color=fff">
+                                </div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <div class="message-text">Привет! Как дела?</div>
+                                    </div>
+                                    <span class="message-time">14:30</span>
+                                </div>
+                            </div>
+
+                            <!-- Исходящее сообщение -->
+                            <div class="message outgoing">
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <div class="message-text">Привет! Отлично, работаю над проектом. А у тебя?</div>
+                                    </div>
+                                    <span class="message-time">14:32</span>
+                                </div>
+                            </div>
+
+                            <!-- Сообщение с эмодзи -->
+                            <div class="message incoming">
+                                <div class="message-avatar">
+                                    <img src="https://ui-avatars.com/api/?name=Ivan+Petrov&background=4361ee&color=fff">
+                                </div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <div class="message-text message-emoji">👍 😊 🚀</div>
+                                    </div>
+                                    <span class="message-time">14:33</span>
+                                </div>
+                            </div>
+
+                            <!-- Сообщение с файлом -->
+                            <div class="message outgoing">
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <div class="message-text">Вот отчет за прошлый месяц</div>
+                                        <div class="message-file">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <div class="file-info">
+                                                <div class="file-name">monthly_report.pdf</div>
+                                                <div class="file-size">2.4 MB</div>
+                                            </div>
+                                            <i class="fas fa-download file-download"></i>
+                                        </div>
+                                    </div>
+                                    <span class="message-time">14:35</span>
+                                </div>
+                            </div>
+
+                            <!-- Ответ -->
+                            <div class="message incoming">
+                                <div class="message-avatar">
+                                    <img src="https://ui-avatars.com/api/?name=Ivan+Petrov&background=4361ee&color=fff">
+                                </div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        <div class="message-text">Спасибо, посмотрю!</div>
+                                    </div>
+                                    <span class="message-time">14:36</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ввод сообщения -->
+                        <div class="chat-input-area">
+                            <div class="message-form">
+                                <div class="input-actions">
+                                    <i class="fas fa-paperclip" id="attachFile"></i>
+                                    <i class="fas fa-smile" id="emojiBtn"></i>
+                                </div>
+                                <div class="message-input-wrapper">
+                                    <input type="text" placeholder="Напишите сообщение..." id="messageInput">
+                                </div>
+                                <button class="send-btn" id="sendMessage">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Панель эмодзи -->
+                            <div class="emoji-panel" id="emojiPanel">
+                                <span class="emoji-item">😊</span>
+                                <span class="emoji-item">👍</span>
+                                <span class="emoji-item">❤️</span>
+                                <span class="emoji-item">😂</span>
+                                <span class="emoji-item">🎉</span>
+                                <span class="emoji-item">🤔</span>
+                                <span class="emoji-item">👌</span>
+                                <span class="emoji-item">🔥</span>
+                                <span class="emoji-item">✅</span>
+                                <span class="emoji-item">❌</span>
+                                <span class="emoji-item">⭐</span>
+                                <span class="emoji-item">💯</span>
+                                <span class="emoji-item">🔔</span>
+                                <span class="emoji-item">📎</span>
+                                <span class="emoji-item">📊</span>
+                                <span class="emoji-item">📝</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Скрипты -->
+    <script src="script/chat.js"></script>
+</body>
+</html>

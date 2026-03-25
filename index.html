@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Admin Panel | Удобная админка</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="/style/dropdown.css">
+    <link rel="stylesheet" href="/style/notification.css">
+    <script src="/script/notification.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Боковое меню -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Верхняя панель -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Панель управления</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                                        <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                        
+                        <!-- Выпадающее меню уведомлений -->
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="dropdown-header">
+                                <h3>Уведомления</h3>
+                                <span class="mark-read">Отметить все как прочитанные</span>
+                            </div>
+                            
+                            <div class="notifications-list">
+                                <!-- Уведомление 1 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon blue">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый заказ #2391</strong> на сумму $2,499</p>
+                                        <span class="time">5 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 2 -->
+                                <div class="notification-item unread">
+                                    <div class="notification-icon green">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый пользователь</strong> Мария Иванова</p>
+                                        <span class="time">15 минут назад</span>
+                                    </div>
+                                    <span class="unread-dot"></span>
+                                </div>
+                                
+                                <!-- Уведомление 3 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon orange">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Товар заканчивается</strong> MacBook Pro (осталось 3 шт)</p>
+                                        <span class="time">1 час назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 4 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon purple">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Новый отзыв</strong> 5 звезд на iPhone 15</p>
+                                        <span class="time">3 часа назад</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Уведомление 5 -->
+                                <div class="notification-item">
+                                    <div class="notification-icon red">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p><strong>Ошибка оплаты</strong> заказ #2385</p>
+                                        <span class="time">вчера</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="notifications.html">Посмотреть все уведомления</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <!-- Выпадающее меню -->
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="profile.html">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="settings.html">
+                                <i class="fas fa-cog"></i> Настройки
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Выйти
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контентная область -->
+            <div class="content">
+                <!-- Карточки статистики -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>$54,239</h3>
+                            <p>Общий доход</p>
+                            <span class="trend up">
+                                <i class="fas fa-arrow-up"></i> +12.5%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8,549</h3>
+                            <p>Всего пользователей</p>
+                            <span class="trend up">
+                                <i class="fas fa-arrow-up"></i> +5.2%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,423</h3>
+                            <p>Заказов</p>
+                            <span class="trend down">
+                                <i class="fas fa-arrow-down"></i> -2.1%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>44.5k</h3>
+                            <p>Просмотров</p>
+                            <span class="trend up">
+                                <i class="fas fa-arrow-up"></i> +18.7%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- График и активность -->
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h3>Посещаемость</h3>
+                            <select>
+                                <option>За неделю</option>
+                                <option>За месяц</option>
+                                <option>За год</option>
+                            </select>
+                        </div>
+                        <div class="chart-placeholder">
+                            <!-- Здесь будет график (можно подключить Chart.js) -->
+                            <div class="mock-chart">
+                                <div class="bar" style="height: 40px;"></div>
+                                <div class="bar" style="height: 65px;"></div>
+                                <div class="bar" style="height: 55px;"></div>
+                                <div class="bar" style="height: 80px;"></div>
+                                <div class="bar" style="height: 45px;"></div>
+                                <div class="bar" style="height: 70px;"></div>
+                                <div class="bar" style="height: 90px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card">
+                        <div class="card-header">
+                            <h3>Активность</h3>
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon green">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p><strong>Новый пользователь</strong> зарегистрировался</p>
+                                    <small>5 минут назад</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon blue">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p><strong>Заказ #2384</strong> выполнен</p>
+                                    <small>15 минут назад</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon orange">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p><strong>Новый комментарий</strong> к товару</p>
+                                    <small>1 час назад</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Таблица -->
+                <div class="table-card">
+                    <div class="card-header">
+                        <h3>Последние заказы</h3>
+                        <a href="#" class="view-all">Все заказы <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Клиент</th>
+                                    <th>Товар</th>
+                                    <th>Сумма</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#2384</td>
+                                    <td>Иван Петров</td>
+                                    <td>iPhone 15 Pro</td>
+                                    <td>$1,299</td>
+                                    <td><span class="status success">Доставлен</span></td>
+                                    <td>
+                                        <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#2385</td>
+                                    <td>Мария Иванова</td>
+                                    <td>MacBook Air</td>
+                                    <td>$1,099</td>
+                                    <td><span class="status warning">В пути</span></td>
+                                    <td>
+                                        <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#2386</td>
+                                    <td>Алексей Сидоров</td>
+                                    <td>AirPods Pro</td>
+                                    <td>$249</td>
+                                    <td><span class="status pending">Обработка</span></td>
+                                    <td>
+                                        <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#2387</td>
+                                    <td>Елена Козлова</td>
+                                    <td>iPad Mini</td>
+                                    <td>$499</td>
+                                    <td><span class="status success">Доставлен</span></td>
+                                    <td>
+                                        <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Оверлей для мобильного меню -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- JavaScript -->
+    <script src="/script/index.js"></script>
+</body>
+</html>

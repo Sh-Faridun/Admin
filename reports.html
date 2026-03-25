@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчеты | Admin Panel</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Chart.js для графиков -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="/style/reports.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class="fas fa-box"></i>
+                            <span>Товары</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Склад</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="chat.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Чат</span>
+                            <span class="badge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendar.html">
+                            <i class="fas fa-calendar"></i>
+                            <span>Календарь</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="files.html">
+                            <i class="fas fa-folder"></i>
+                            <span>Файлы</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Отчеты</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Отчеты</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                    <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="#"><i class="fas fa-user"></i> Мой профиль</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Настройки</a>
+                            <hr style="margin: 8px 0; border-color: var(--border);">
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент -->
+            <div class="content">
+                <!-- Заголовок -->
+                <div class="reports-header">
+                    <h1>Отчеты и аналитика</h1>
+                    <div class="reports-actions">
+                        <button class="btn btn-primary" id="generateReportBtn">
+                            <i class="fas fa-plus"></i> Создать отчет
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Импорт
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Вкладки -->
+                <div class="reports-tabs">
+                    <button class="tab-btn active" data-tab="templates">
+                        <i class="fas fa-file-alt"></i> Шаблоны
+                    </button>
+                    <button class="tab-btn" data-tab="saved">
+                        <i class="fas fa-archive"></i> Сохраненные
+                    </button>
+                    <button class="tab-btn" data-tab="custom">
+                        <i class="fas fa-chart-line"></i> Пользовательские
+                    </button>
+                </div>
+
+                <!-- Фильтры -->
+                <div class="filters-bar">
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Период</label>
+                            <div class="date-range">
+                                <input type="date" class="date-input" id="startDate" value="2026-03-01">
+                                <input type="date" class="date-input" id="endDate" value="2026-03-31">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Тип отчета</label>
+                            <select class="filter-select" id="reportType">
+                                <option>Все типы</option>
+                                <option>Продажи</option>
+                                <option>Финансы</option>
+                                <option>Пользователи</option>
+                                <option>Товары</option>
+                                <option>Склад</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Формат</label>
+                            <select class="filter-select" id="reportFormat">
+                                <option>PDF</option>
+                                <option>Excel</option>
+                                <option>CSV</option>
+                                <option>HTML</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <button class="btn btn-primary" id="applyFilters" style="width: 100%;">
+                                <i class="fas fa-filter"></i> Применить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Статистика -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>PDF отчетов</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>18</h3>
+                            <p>Excel отчетов</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>12</h3>
+                            <p>Графиков</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Последний</h3>
+                            <p>15 мар 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Шаблоны отчетов (активная вкладка) -->
+                <div class="templates-grid" id="templatesTab">
+                    <!-- Отчет о продажах -->
+                    <div class="template-card" data-template="sales">
+                        <div class="template-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="template-title">Отчет о продажах</h3>
+                        <p class="template-desc">Детальный анализ продаж по дням, товарам и категориям. Включает графики и сводные таблицы.</p>
+                        <div class="template-meta">
+                            <span><i class="fas fa-chart-pie"></i> 4 графика</span>
+                            <span><i class="fas fa-table"></i> 3 таблицы</span>
+                        </div>
+                    </div>
+
+                    <!-- Финансовый отчет -->
+                    <div class="template-card" data-template="financial">
+                        <div class="template-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3 class="template-title">Финансовый отчет</h3>
+                        <p class="template-desc">Доходы, расходы, прибыль, налоги. Сравнение с предыдущим периодом.</p>
+                        <div class="template-meta">
+                            <span><i class="fas fa-chart-line"></i> 3 графика</span>
+                            <span><i class="fas fa-calculator"></i> 5 показателей</span>
+                        </div>
+                    </div>
+
+                    <!-- Пользователи -->
+                    <div class="template-card" data-template="users">
+                        <div class="template-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="template-title">Активность пользователей</h3>
+                        <p class="template-desc">Регистрации, активности, удержание, география пользователей.</p>
+                        <div class="template-meta">
+                            <span><i class="fas fa-chart-bar"></i> 4 графика</span>
+                            <span><i class="fas fa-globe"></i> Карта</span>
+                        </div>
+                    </div>
+
+                    <!-- Товары -->
+                    <div class="template-card" data-template="products">
+                        <div class="template-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <h3 class="template-title">Товарный отчет</h3>
+                        <p class="template-desc">Популярные товары, остатки на складе, лидеры продаж.</p>
+                        <div class="template-meta">
+                            <span><i class="fas fa-chart-pie"></i> 3 графика</span>
+                            <span><i class="fas fa-list"></i> Топ-10</span>
+                        </div>
+                    </div>
+
+                    <!-- Склад -->
+                    <div class="template-card" data-template="inventory">
+                        <div class="template-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <h3 class="template-title">Складской учет</h3>
+                        <p class="template-desc">Остатки, движения товаров, обороты, прогноз пополнения.</p>
+                        <div class="template-meta">
+                            <span><i class="fas fa-chart-bar"></i> 3 графика</span>
+                            <span><i class="fas fa-table"></i> 2 таблицы</span>
+                        </div>
+                    </div>
+
+                    <!-- Ежедневный дайджест -->
+                    <div class="template-card" data-template="daily">
+                        <div class="template-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <h3 class="template-title">Ежедневный дайджест</h3>
+                        <p class="template-desc">Ключевые метрики за день: продажи, новые пользователи, заказы.</p>
+                        <div class="template-meta">
+                            <span><i class="fas fa-chart-line"></i> 5 графиков</span>
+                            <span><i class="fas fa-clock"></i> Ежедневно</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Сохраненные отчеты (скрыты) -->
+                <div class="saved-reports" id="savedTab" style="display: none;">
+                    <div class="report-item">
+                        <div class="report-info">
+                            <div class="report-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="report-details">
+                                <h4>Отчет о продажах - Март 2026</h4>
+                                <p>Создан 15.03.2026 • 2.4 MB • PDF</p>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="report-btn"><i class="fas fa-eye"></i> Просмотр</button>
+                            <button class="report-btn"><i class="fas fa-download"></i> Скачать</button>
+                            <button class="report-btn"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-info">
+                            <div class="report-icon">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <div class="report-details">
+                                <h4>Финансовый отчет - Февраль 2026</h4>
+                                <p>Создан 01.03.2026 • 1.8 MB • XLSX</p>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="report-btn"><i class="fas fa-eye"></i> Просмотр</button>
+                            <button class="report-btn"><i class="fas fa-download"></i> Скачать</button>
+                            <button class="report-btn"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-info">
+                            <div class="report-icon">
+                                <i class="fas fa-file-csv"></i>
+                            </div>
+                            <div class="report-details">
+                                <h4>Пользователи - Март 2026</h4>
+                                <p>Создан 14.03.2026 • 0.5 MB • CSV</p>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="report-btn"><i class="fas fa-eye"></i> Просмотр</button>
+                            <button class="report-btn"><i class="fas fa-download"></i> Скачать</button>
+                            <button class="report-btn"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Графики -->
+                <div class="charts-grid">
+                    <!-- Линейный график -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Динамика продаж</h3>
+                            <select>
+                                <option>За месяц</option>
+                                <option>За квартал</option>
+                                <option>За год</option>
+                            </select>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Круговая диаграмма -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Продажи по категориям</h3>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="categoriesChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Столбчатая диаграмма (полная ширина) -->
+                    <div class="chart-card full-width">
+                        <div class="chart-header">
+                            <h3>Топ-10 товаров по продажам</h3>
+                            <select>
+                                <option>По выручке</option>
+                                <option>По количеству</option>
+                            </select>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="productsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Таблица данных -->
+                <div class="data-table">
+                    <div class="table-header">
+                        <h3 class="table-title">Детализация продаж по дням</h3>
+                        <div class="btn-group">
+                            <button class="btn btn-outline" id="exportExcelBtn">
+                                <i class="fas fa-file-excel"></i> Excel
+                            </button>
+                            <button class="btn btn-outline" id="exportCSVBtn">
+                                <i class="fas fa-file-csv"></i> CSV
+                            </button>
+                            <button class="btn btn-outline" id="printBtn">
+                                <i class="fas fa-print"></i> Печать
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Дата</th>
+                                    <th>Заказов</th>
+                                    <th>Товаров</th>
+                                    <th>Выручка</th>
+                                    <th>Средний чек</th>
+                                    <th>Динамика</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>01.03.2026</td>
+                                    <td>45</td>
+                                    <td>78</td>
+                                    <td>$12,450</td>
+                                    <td>$276</td>
+                                    <td><span class="badge success">+12%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>02.03.2026</td>
+                                    <td>52</td>
+                                    <td>94</td>
+                                    <td>$14,320</td>
+                                    <td>$275</td>
+                                    <td><span class="badge success">+15%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>03.03.2026</td>
+                                    <td>48</td>
+                                    <td>82</td>
+                                    <td>$13,100</td>
+                                    <td>$273</td>
+                                    <td><span class="badge warning">-8%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04.03.2026</td>
+                                    <td>63</td>
+                                    <td>112</td>
+                                    <td>$17,850</td>
+                                    <td>$283</td>
+                                    <td><span class="badge success">+36%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>05.03.2026</td>
+                                    <td>58</td>
+                                    <td>103</td>
+                                    <td>$16,200</td>
+                                    <td>$279</td>
+                                    <td><span class="badge success">+5%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>06.03.2026</td>
+                                    <td>71</td>
+                                    <td>128</td>
+                                    <td>$19,880</td>
+                                    <td>$280</td>
+                                    <td><span class="badge success">+23%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>07.03.2026</td>
+                                    <td>67</td>
+                                    <td>119</td>
+                                    <td>$18,760</td>
+                                    <td>$280</td>
+                                    <td><span class="badge warning">-6%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>08.03.2026</td>
+                                    <td>54</td>
+                                    <td>96</td>
+                                    <td>$15,120</td>
+                                    <td>$280</td>
+                                    <td><span class="badge danger">-19%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>09.03.2026</td>
+                                    <td>62</td>
+                                    <td>108</td>
+                                    <td>$17,360</td>
+                                    <td>$280</td>
+                                    <td><span class="badge success">+15%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>10.03.2026</td>
+                                    <td>73</td>
+                                    <td>131</td>
+                                    <td>$20,440</td>
+                                    <td>$280</td>
+                                    <td><span class="badge success">+18%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно создания отчета -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Создание отчета</h3>
+                <button class="close-btn" id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="filter-group">
+                    <label class="filter-label">Название отчета</label>
+                    <input type="text" class="filter-input" placeholder="Введите название" id="reportName">
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Тип отчета</label>
+                    <select class="filter-select" id="modalReportType">
+                        <option>Отчет о продажах</option>
+                        <option>Финансовый отчет</option>
+                        <option>Активность пользователей</option>
+                        <option>Товарный отчет</option>
+                        <option>Складской учет</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Формат</label>
+                    <select class="filter-select" id="modalReportFormat">
+                        <option>PDF</option>
+                        <option>Excel (XLSX)</option>
+                        <option>CSV</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Включить графики</label>
+                    <div style="display: flex; gap: 20px;">
+                        <label><input type="checkbox" checked> Линейные</label>
+                        <label><input type="checkbox" checked> Круговые</label>
+                        <label><input type="checkbox" checked> Столбчатые</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelModal">Отмена</button>
+                <button class="btn btn-primary" id="generateModalBtn">Создать отчет</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Скрипты -->
+    <script src="/script/reports.js" ></script>
+</body>
+</html>

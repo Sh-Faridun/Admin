@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь | Admin Panel</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/calendar.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>AdminPro</span>
+                </div>
+                <button class="sidebar-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Аналитика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Пользователи</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class="fas fa-box"></i>
+                            <span>Товары</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory.html">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Склад</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="chat.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Чат</span>
+                            <span class="badge">3</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="calendar.html">
+                            <i class="fas fa-calendar"></i>
+                            <span>Календарь</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Топбар -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>Календарь</h2>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Поиск...">
+                    </div>
+                    
+                    <div class="notifications" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    
+                    <div class="user-menu" id="userMenuBtn">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=4361ee&color=fff" alt="User">
+                        <span>Админ</span>
+                        <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="#"><i class="fas fa-user"></i> Мой профиль</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Настройки</a>
+                            <hr style="margin: 8px 0; border-color: var(--border);">
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент -->
+            <div class="content">
+                <!-- Заголовок календаря -->
+                <div class="calendar-header">
+                    <div class="calendar-title">
+                        <h1 id="currentMonthYear">Март 2026</h1>
+                        <div class="calendar-nav">
+                            <button class="nav-btn" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                            <button class="today-btn" id="todayBtn">Сегодня</button>
+                            <button class="nav-btn" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 16px;">
+                        <div class="view-options">
+                            <button class="view-btn active" data-view="month">Месяц</button>
+                            <button class="view-btn" data-view="week">Неделя</button>
+                            <button class="view-btn" data-view="day">День</button>
+                        </div>
+                        
+                        <button class="add-event-btn" id="addEventBtn">
+                            <i class="fas fa-plus"></i> Событие
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Календарь -->
+                <div style="display: flex; gap: 20px;">
+                    <!-- Боковая панель -->
+                    <div class="calendar-sidebar">
+                        <!-- Миникалендарь -->
+                        <div class="mini-calendar">
+                            <div class="mini-header">
+                                <h3 id="miniMonthYear">Март 2026</h3>
+                                <div>
+                                    <button class="nav-btn" style="width: 30px; height: 30px;" id="miniPrev"><i class="fas fa-chevron-left"></i></button>
+                                    <button class="nav-btn" style="width: 30px; height: 30px;" id="miniNext"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="mini-weekdays">
+                                <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+                            </div>
+                            <div class="mini-days" id="miniDays">
+                                <!-- Заполняется JS -->
+                            </div>
+                        </div>
+
+                        <!-- Задачи -->
+                        <div class="tasks-section">
+                            <h3>Мои задачи</h3>
+                            <div class="task-item" draggable="true" data-task="1">
+                                <div class="task-checkbox"></div>
+                                <div class="task-content">
+                                    <div class="task-title">Подготовить отчет</div>
+                                    <div class="task-date">Сегодня, 15:00</div>
+                                </div>
+                                <div class="task-priority priority-high"></div>
+                            </div>
+                            <div class="task-item" draggable="true" data-task="2">
+                                <div class="task-checkbox"></div>
+                                <div class="task-content">
+                                    <div class="task-title">Встреча с клиентом</div>
+                                    <div class="task-date">Завтра, 10:30</div>
+                                </div>
+                                <div class="task-priority priority-medium"></div>
+                            </div>
+                            <div class="task-item" draggable="true" data-task="3">
+                                <div class="task-checkbox checked"></div>
+                                <div class="task-content">
+                                    <div class="task-title checked">Отправить договор</div>
+                                    <div class="task-date">Вчера</div>
+                                </div>
+                                <div class="task-priority priority-low"></div>
+                            </div>
+                            <div class="task-item" draggable="true" data-task="4">
+                                <div class="task-checkbox"></div>
+                                <div class="task-content">
+                                    <div class="task-title">Презентация проекта</div>
+                                    <div class="task-date">25 мар, 14:00</div>
+                                </div>
+                                <div class="task-priority priority-high"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Основная область календаря -->
+                    <div class="calendar-main" id="calendarMain">
+                        <!-- Месячный вид (по умолчанию) -->
+                        <div class="month-view" id="monthView">
+                            <div class="month-weekdays">
+                                <span>Понедельник</span><span>Вторник</span><span>Среда</span><span>Четверг</span><span>Пятница</span><span>Суббота</span><span>Воскресенье</span>
+                            </div>
+                            <div class="month-grid" id="monthGrid">
+                                <!-- Заполняется JS -->
+                            </div>
+                        </div>
+
+                        <!-- Недельный вид (скрыт по умолчанию) -->
+                        <div class="week-view" id="weekView" style="display: none;">
+                            <div class="week-header" id="weekHeader"></div>
+                            <div class="week-grid" id="weekGrid"></div>
+                        </div>
+
+                        <!-- Дневной вид (скрыт по умолчанию) -->
+                        <div class="day-view" id="dayView" style="display: none;">
+                            <div class="day-header" id="dayHeader"></div>
+                            <div class="day-grid" id="dayGrid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно для событий -->
+    <div class="modal" id="eventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Новое событие</h3>
+                <button class="close-btn" id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Название</label>
+                    <input type="text" class="form-input" id="eventTitle" placeholder="Введите название события">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Дата</label>
+                    <input type="date" class="form-input" id="eventDate">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Время</label>
+                    <input type="time" class="form-input" id="eventTime">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Цвет</label>
+                    <div class="color-options">
+                        <div class="color-option color-blue selected" data-color="blue"></div>
+                        <div class="color-option color-green" data-color="green"></div>
+                        <div class="color-option color-orange" data-color="orange"></div>
+                        <div class="color-option color-pink" data-color="pink"></div>
+                        <div class="color-option color-purple" data-color="purple"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Описание</label>
+                    <textarea class="form-textarea" id="eventDescription" placeholder="Описание события..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelModal">Отмена</button>
+                <button class="btn btn-primary" id="saveEvent">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Оверлей -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Скрипты -->
+    <script src="/script/calendar.js"></script>
+</body>
+</html>
